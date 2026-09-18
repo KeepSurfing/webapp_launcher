@@ -19,7 +19,7 @@ function Icon({ name, size = 18 }: { name: string; size?: number }) {
 function Cover({ site, large = false }: { site: MosaicSite; large?: boolean }) {
   const kind = site.id;
   return <motion.div layoutId={`cover-${site.id}`} transition={{ type: "spring", damping: 30, stiffness: 260 }} className={`cover cover-${kind} ${large ? "cover-large" : ""}`} style={{ "--accent": site.accent, "--accent-two": site.accentSecondary } as React.CSSProperties}>
-    {kind === "petsitter" && <><img src={site.previewImage} alt="Chien accompagné par un pet sitter" /><span className="cover-stamp">BORDEAUX<br />PET CARE</span></>}
+    {site.previewImage && <img className="cover-image" src={site.previewImage} alt={`Aperçu de ${site.name}`} />}{kind === "petsitter" && <span className="cover-stamp">BORDEAUX<br />PET CARE</span>}
     {kind === "toit-renov" && <><div className="roof-lines" /><div className="roof-copy">TOIT<br /><i>RÉNOV'</i></div><span className="cover-chip">DEVIS · 24H</span></>}
     {kind === "bordeaux-bouge" && <><div className="city-sun" /><div className="city-bars" /><div className="agenda-paper"><b>SEP</b><strong>18</strong><span>BOUGE</span></div></>}
     {kind === "dashboard" && <><div className="dash-sidebar"><i /><i /><i /></div><div className="dash-main"><span>WEEKLY SIGNALS</span><div className="dash-chart"><i /><i /><i /><i /><i /><i /></div><div className="dash-values"><b>82.4</b><em>+14.2%</em></div></div></>}
