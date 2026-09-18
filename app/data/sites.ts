@@ -3,13 +3,13 @@ export type SiteStatus = "En ligne" | "Brouillon" | "À revoir";
 export type MosaicSite = {
   id: string; name: string; category: string; status: SiteStatus; url: string;
   description: string; tags: string[]; addedAt: string; lastAccessed: string;
-  note?: string; accent: string; accentSecondary: string; mark: string;
+  note?: string; previewImage?: string; accent: string; accentSecondary: string; mark: string;
 };
 
 // MOSAIC DATA — replace this array with your own links.
 // accent + accentSecondary generate a refined abstract preview when no image exists.
 export const sites: MosaicSite[] = [
-  { id: "petsitter", name: "PetSitter", category: "Services", status: "En ligne", url: "https://petsitter-sooty.vercel.app/", description: "Un service pensé pour faciliter la mise en relation entre propriétaires d’animaux et pet-sitters.", tags: ["animaux", "réservation", "service"], addedAt: "18 sept. 2026", lastAccessed: "Aujourd’hui", accent: "#d8ff62", accentSecondary: "#44c8aa", mark: "P" },
+  { id: "petsitter", name: "PetSitter", category: "Services", status: "En ligne", url: "https://petsitter-sooty.vercel.app/", description: "Un service pensé pour faciliter la mise en relation entre propriétaires d’animaux et pet-sitters.", tags: ["animaux", "réservation", "service"], addedAt: "18 sept. 2026", lastAccessed: "Aujourd’hui", previewImage: "https://petsitter-sooty.vercel.app/_next/image?url=%2Fimages%2Fhero-cover.jpg&w=1200&q=80", accent: "#d8ff62", accentSecondary: "#44c8aa", mark: "P" },
   { id: "toit-renov", name: "Toit Rénov'", category: "Sites web", status: "En ligne", url: "https://toit-renov.vercel.app/", description: "Un site vitrine dédié à la rénovation de toiture, clair et orienté conversion.", tags: ["artisan", "rénovation", "vitrine"], addedAt: "18 sept. 2026", lastAccessed: "Aujourd’hui", accent: "#ffbd64", accentSecondary: "#db6c4d", mark: "T" },
   { id: "bordeaux-bouge", name: "Bordeaux Bouge", category: "Applications", status: "En ligne", url: "https://bdx-agenda.vercel.app/", description: "Un agenda indépendant qui rassemble les événements de Bordeaux et de sa métropole.", tags: ["Bordeaux", "agenda", "open data"], addedAt: "18 sept. 2026", lastAccessed: "Aujourd’hui", accent: "#8ff2ff", accentSecondary: "#5974eb", mark: "B" },
   { id: "dashboard", name: "Erdos 64", category: "Applications", status: "En ligne", url: "https://dashboard-two-phi-86.vercel.app/", description: "Un dashboard personnel pour suivre les informations essentielles en un regard.", tags: ["dashboard", "données", "pilotage"], addedAt: "18 sept. 2026", lastAccessed: "Aujourd’hui", accent: "#b8a6ff", accentSecondary: "#665ed9", mark: "E" },
