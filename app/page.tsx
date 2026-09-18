@@ -1,0 +1,47 @@
+"use client";
+
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { MosaicSite, sites as initialSites } from "./data/sites";
+
+const categories = ["Tout", ...Array.from(new Set(initialSites.map((site) => site.category)))];
+
+function Icon({ name, size = 18 }: { name: string; size?: number }) {
+  const paths: Record<string, React.ReactNode> = {
+    search: <><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></>, plus: <><path d="M12 5v14M5 12h14" /></>,
+    heart: <path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 1 0-7.6 7.6L12 21l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z" />,
+    x: <><path d="m6 6 12 12M18 6 6 18" /></>, arrow: <><path d="M5 12h14M13 6l6 6-6 6" /></>,
+    external: <><path d="M14 4h6v6M20 4 11 13" /><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" /></>, spark: <path d="m12 2 1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Z" />,
+  };
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
+}
+
+function Preview({ site, large = false }: { site: MosaicSite; large?: boolean }) {
+  return <div className={`preview ${large ? "preview-large" : ""}`} style={{ "--accent": site.accent, "--accent-secondary": site.accentSecondary } as React.CSSProperties}>
+    <div className="preview-noise" /><div className="preview-orb preview-orb-one" /><div className="preview-orb preview-orb-two" /><div className="preview-grid" /><span className="preview-mark">{site.mark}</span><span className="preview-caption">{site.category}</span>
+  </div>;
+}
+
+export default function Home() {
+  const [allSites, setAllSites] = useState<MosaicSite[]>(initialSites);
+  const [query, setQuery] = useState(""); const [category, setCategory] = useState("Tout");
+  const [selected, setSelected] = useState<MosaicSite | null>(null); const [favorites, setFavorites] = useState<string[]>([]); const [isAdding, setIsAdding] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null); const lastTrigger = useRef<HTMLElement | null>(null);
+  useEffect(() => { const stored = window.localStorage.getItem("mosaic-favorites"); if (stored) setFavorites(JSON.parse(stored)); }, []);
+  useEffect(() => { window.localStorage.setItem("mosaic-favorites", JSON.stringify(favorites)); }, [favorites]);
+  const closePanel = () => { setSelected(null); window.setTimeout(() => lastTrigger.current?.focus(), 200); };
+  useEffect(() => { const keys = (event: KeyboardEvent) => { if (event.key === "Escape") { if (isAdding) setIsAdding(false); else if (selected) closePanel(); } if (event.key === "/" && !selected && !isAdding && document.activeElement?.tagName !== "INPUT") { event.preventDefault(); searchRef.current?.focus(); } }; window.addEventListener("keydown", keys); return () => window.removeEventListener("keydown", keys); });
+  useEffect(() => { if (selected) window.setTimeout(() => document.getElementById("panel-close")?.focus(), 50); }, [selected]);
+  const results = useMemo(() => allSites.filter((site) => (category === "Tout" || site.category === category) && [site.name, site.category, ...site.tags].join(" ").toLowerCase().includes(query.toLowerCase())), [allSites, category, query]);
+  const toggleFavorite = (id: string) => setFavorites((list) => list.includes(id) ? list.filter((value) => value !== id) : [...list, id]);
+  const openPanel = (site: MosaicSite, trigger: HTMLElement) => { lastTrigger.current = trigger; setSelected(site); };
+  function addSite(event: FormEvent<HTMLFormElement>) { event.preventDefault(); const form = new FormData(event.currentTarget); const name = String(form.get("name") || "Nouveau lien"); setAllSites((current) => [{ id: `${Date.now()}`, name, url: String(form.get("url") || "https://example.com"), category: String(form.get("category") || "Personnel"), status: "En ligne", description: "Un nouveau raccourci ajouté à votre espace Mosaic.", tags: String(form.get("tags") || "nouveau").split(",").map((tag) => tag.trim()).filter(Boolean), addedAt: "À l’instant", lastAccessed: "Jamais", accent: "#d8ff62", accentSecondary: "#8b75ff", mark: name.slice(0, 1).toUpperCase() }, ...current]); setIsAdding(false); setQuery(""); setCategory("Tout"); }
+  return <main className={`mosaic-shell ${selected ? "panel-open" : ""}`}>
+    <div className="ambient ambient-lime" /><div className="ambient ambient-lavender" /><div className="page-grain" />
+    <div className="app-content"><header className="topbar"><a className="wordmark" href="#top" aria-label="Mosaic, accueil"><span className="wordmark-mark">M</span>Mosaic</a><label className="search-box"><Icon name="search" size={17} /><span className="sr-only">Rechercher vos liens</span><input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Rechercher dans Mosaic" /><kbd>/</kbd></label><button className="add-link" onClick={() => setIsAdding(true)}><Icon name="plus" size={17} /> <span>Ajouter un lien</span></button></header>
+      <section className="intro" id="top"><div><p className="eyebrow"><Icon name="spark" size={13} /> ESPACE PERSONNEL</p><h1>Tout ce qui compte,<br /><em>à portée de regard.</em></h1></div><p className="intro-copy">Vos outils, vos repères et les endroits où vos idées prennent forme.</p></section>
+      <section className="library" aria-label="Vos liens"><div className="library-controls"><div className="filters" aria-label="Filtrer par catégorie">{categories.map((item) => <button key={item} className={category === item ? "filter active" : "filter"} onClick={() => setCategory(item)}>{item}</button>)}</div><p className="count">{results.length} {results.length > 1 ? "espaces" : "espace"}</p></div><div className="site-grid">{results.map((site, index) => <article key={site.id} className="site-card" style={{ "--delay": `${index * 45}ms` } as React.CSSProperties}><button className="card-main" onClick={(event) => openPanel(site, event.currentTarget)} aria-label={`Voir ${site.name}`}><Preview site={site} /><div className="card-content"><div className="card-title-row"><h2>{site.name}</h2><span className={`status ${site.status === "En ligne" ? "online" : ""}`}>{site.status}</span></div><p>{site.category}</p></div></button><button className={`favorite-button ${favorites.includes(site.id) ? "is-favorite" : ""}`} onClick={() => toggleFavorite(site.id)} aria-label={`${favorites.includes(site.id) ? "Retirer" : "Ajouter"} ${site.name} des favoris`} aria-pressed={favorites.includes(site.id)}><Icon name="heart" size={16} /></button></article>)}</div>{results.length === 0 && <div className="empty-state"><Icon name="search" size={25} /><h2>Aucun espace trouvé</h2><p>Essayez un autre mot ou retirez un filtre.</p><button onClick={() => { setQuery(""); setCategory("Tout"); }}>Réinitialiser</button></div>}</section>
+    </div>
+    {selected && <><button className="backdrop" onClick={closePanel} aria-label="Fermer les détails" /><aside className="details-panel" aria-label={`Détails de ${selected.name}`} aria-modal="true" role="dialog"><div className="panel-header"><span className="panel-kicker">DÉTAIL DE L’ESPACE</span><button id="panel-close" className="icon-button" onClick={closePanel} aria-label="Fermer"><Icon name="x" /></button></div><Preview site={selected} large /><div className="panel-body"><div className="panel-name-row"><div><p className="panel-category">{selected.category}</p><h2>{selected.name}</h2></div><button className={`icon-button favorite-panel ${favorites.includes(selected.id) ? "is-favorite" : ""}`} onClick={() => toggleFavorite(selected.id)} aria-label="Ajouter aux favoris" aria-pressed={favorites.includes(selected.id)}><Icon name="heart" /></button></div><p className="panel-description">{selected.description}</p><div className="tags">{selected.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div><dl className="details-list"><div><dt>URL</dt><dd><a href={selected.url} target="_blank" rel="noreferrer">{selected.url.replace(/^https?:\/\//, "")}</a></dd></div><div><dt>Dernier accès</dt><dd>{selected.lastAccessed}</dd></div><div><dt>Ajouté</dt><dd>{selected.addedAt}</dd></div></dl>{selected.note && <div className="note"><span>NOTE</span><p>{selected.note}</p></div>}<a className="open-site" href={selected.url} target="_blank" rel="noreferrer">Ouvrir le site <Icon name="external" size={16} /></a></div></aside></>}
+    {isAdding && <div className="modal-layer" role="presentation"><button className="modal-backdrop" onClick={() => setIsAdding(false)} aria-label="Fermer l’ajout" /><form className="add-modal" onSubmit={addSite}><div className="panel-header"><p className="panel-kicker">NOUVEL ESPACE</p><button className="icon-button" type="button" onClick={() => setIsAdding(false)} aria-label="Fermer"><Icon name="x" /></button></div><h2>Ajouter un lien</h2><label>Nom<input required name="name" placeholder="Ex. Mon portfolio" autoFocus /></label><label>URL<input required name="url" type="url" placeholder="https://" /></label><div className="form-two"><label>Catégorie<select name="category"><option>Personnel</option><option>Travail</option><option>Création</option><option>Inspiration</option><option>Utilitaires</option></select></label><label>Tags<input name="tags" placeholder="design, idées" /></label></div><button className="open-site" type="submit">Ajouter à Mosaic <Icon name="arrow" size={16} /></button></form></div>}
+  </main>;
+}
