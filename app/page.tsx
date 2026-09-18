@@ -17,7 +17,7 @@ function Icon({ name, size = 18 }: { name: string; size?: number }) {
 }
 
 function Cover({ site, large = false }: { site: MosaicSite; large?: boolean }) {
-  const kind = site.id;
+  const kind = site.previewImage ? "screenshot" : site.id;
   return <motion.div layoutId={`cover-${site.id}`} transition={{ type: "spring", damping: 30, stiffness: 260 }} className={`cover cover-${kind} ${large ? "cover-large" : ""}`} style={{ "--accent": site.accent, "--accent-two": site.accentSecondary } as React.CSSProperties}>
     {site.previewImage && <img className="cover-image" src={site.previewImage} alt={`Aperçu de ${site.name}`} />}{kind === "petsitter" && <span className="cover-stamp">BORDEAUX<br />PET CARE</span>}
     {kind === "toit-renov" && <><div className="roof-lines" /><div className="roof-copy">TOIT<br /><i>RÉNOV'</i></div><span className="cover-chip">DEVIS · 24H</span></>}
