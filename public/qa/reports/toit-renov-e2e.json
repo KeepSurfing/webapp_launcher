@@ -15,6 +15,7 @@
   "kind": "e2e",
   "format": "playwright",
   "dateSource": "report",
+  "sourceUrl": null,
   "revision": "b6a81bf57f8ea4d7f3ac62e1a2b36e689ef2f078",
   "scope": "Chrome mobile · site local et formulaires de démonstration · branche QA",
   "reportUrl": "/qa/reports/toit-renov-e2e.json"

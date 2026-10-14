@@ -15,6 +15,7 @@
   "kind": "unit",
   "format": "vitest",
   "dateSource": "report",
+  "sourceUrl": null,
   "revision": "e3e2714c45a085449ea497d4f94cef552ffa2341",
   "scope": "Suite de logique et composants sur la branche QA ; services externes simulés",
   "reportUrl": "/qa/reports/bordeaux-bouge-unit.json"

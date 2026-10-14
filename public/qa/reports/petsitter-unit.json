@@ -15,6 +15,7 @@
   "kind": "unit",
   "format": "vitest",
   "dateSource": "report",
+  "sourceUrl": null,
   "revision": "01dfceaf4af8ae885a79ad6c609bf53b1265716d",
   "scope": "Suite de logique et composants sur la branche QA ; services externes simulés",
   "reportUrl": "/qa/reports/petsitter-unit.json"

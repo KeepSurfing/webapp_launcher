@@ -1,0 +1,25 @@
+{
+  "project": "keepsurfing",
+  "total": 4,
+  "passed": 4,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 8631.494999999999,
+  "measuredAt": "2026-10-14T16:25:43.249Z",
+  "environments": [
+    "desktop-chromium",
+    "mobile-chromium"
+  ],
+  "kind": "browser",
+  "format": "playwright",
+  "dateSource": "report",
+  "sourceUrl": null,
+  "revision": "2c09afd1deeca3abd998b9afe5d7febcd78ee065",
+  "scope": "2 scénarios fonctionnels sur ordinateur/mobile ; comparaisons visuelles non exécutées",
+  "reportUrl": "/qa/reports/keepsurfing-browser.json"
+}

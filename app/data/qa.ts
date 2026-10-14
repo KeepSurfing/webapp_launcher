@@ -10,7 +10,7 @@ export type TestRun = {
   kind: TestKind; format: string; total: number; passed: number; failed: number;
   skipped: number; flaky: number; cancelled: number; todo: number; expectedFailures: number; errors: number;
   durationMs: number | null; measuredAt: string; dateSource: string; environments: string[];
-  revision: string | null; scope: string; reportUrl: string;
+  revision: string | null; scope: string; reportUrl: string; sourceUrl?: string | null;
 };
 export type ProjectQA = {
   repository: string; sourceUrl: string; changeUrl?: string | null; inspectedAt: string; available: boolean;
@@ -60,35 +60,30 @@ const recommendations: Record<string, { headline: string; steps: QAStep[] }> = {
     { type: "test", label: "Filtres, dates et export ICS" },
     { type: "test", label: "Recherche et inscription newsletter" },
   ] },
-  "carto-risques": { headline: "Analyse statique · tuiles", steps: [
-    { type: "test", label: "Cas limites de l’analyse statique et des tuiles" },
-    { type: "test", label: "Composants : analyse du lieu et recherche" },
-    { type: "run", label: "Suites Python API et ETL" },
+  "carto-risques": { headline: "Carte · chargement des données", steps: [
+    { type: "test", label: "Couverture unitaire : MapView et protocole statique" },
+    { type: "test", label: "Chargement des données : cache et erreurs" },
   ] },
-  orientation: { headline: "Favoris · API analytics", steps: [
-    { type: "test", label: "Composant FavorisClient et API analytics" },
-    { type: "test", label: "Repository Prisma : erreurs et persistance" },
-    { type: "run", label: "Parcours E2E existants" },
+  orientation: { headline: "Pages · parcours complets", steps: [
+    { type: "test", label: "Compléter la couverture unitaire des pages" },
+    { type: "test", label: "Cas limites des routes métier restantes" },
   ] },
-  "rgpd-scan": { headline: "Paiement · export du rapport", steps: [
-    { type: "test", label: "Checkout et webhook : signatures, doublons" },
-    { type: "test", label: "Export PDF et envoi du rapport" },
-    { type: "measure", label: "Couverture du code" },
-    { type: "run", label: "Suite navigateur existante" },
+  "rgpd-scan": { headline: "Scanner · configurations", steps: [
+    { type: "test", label: "Branches restantes du scanner et protection réseau" },
+    { type: "test", label: "Configurations et interface du rapport" },
   ] },
-  keepsurfing: { headline: "API GitHub · erreurs réseau", steps: [
-    { type: "test", label: "API des dépôts : erreurs, délais et données absentes" },
-    { type: "measure", label: "Couverture des fonctions et des API" },
-    { type: "run", label: "Suite visuelle existante" },
+  keepsurfing: { headline: "Parcours visuels · cas limites", steps: [
+    { type: "test", label: "Dernières branches des API" },
+    { type: "run", label: "Créer les références et exécuter la suite visuelle" },
   ] },
 };
 const reviewedRevisions: Record<string, string | null> = {
-  "rgpd-scan": "cd331e11fe77f58d81ce21ad046e7ba55c8bd987",
+  "rgpd-scan": "defece5d67ceda8e36f1d5679c999e87be80900a",
   "toit-renov": "ceaafe00f9c9ab0b571e144482fabae060d81592",
   "petsitter": "c545b10dd31861fb28ebc654c707a0b766b16ea3",
-  "keepsurfing": "6409602190b12fb7d62b5161f3c9932dc8fb6454",
-  "carto-risques": "32892d1794884aff335f379b84bead378796f478",
-  "orientation": "fb80d93e71a44ae2e9ef5c602d49c7ffe7a02a99",
+  "keepsurfing": "2c09afd1deeca3abd998b9afe5d7febcd78ee065",
+  "carto-risques": "1e5822e934728f988c3996533140665f79ec013b",
+  "orientation": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
   "bordeaux-bouge": "68d1dd76309bf506d892e476c4a6ffe055c041dc"
 };
 export function getQAAction(qa: ProjectQA | undefined, id: string): QAAction {
@@ -104,4 +99,23 @@ export function getQAAction(qa: ProjectQA | undefined, id: string): QAAction {
   if (!lines || !qa.runs.length) return { kind: "measure", label: "À mesurer", headline: "Résultats à documenter",
     steps: [{ type: "measure", label: "Importer les résultats et la couverture" }] };
   return { kind: "tracked", label: "Suivi", headline: "Périmètre mesuré", steps: [{ type: "run", label: "Actualiser les suites existantes" }] };
+}
+
+const runnerNames: Record<string, string> = { vitest: "Vitest", jest: "Jest", playwright: "Playwright", "playwright-summary": "Playwright", "node-tap": "Node.js", "pytest-json": "pytest" };
+const runnerFromSuite = (tool: string) => tool.includes("Playwright") ? "Playwright" : tool.startsWith("Node.js") ? "Node.js" : tool;
+const runnerFromRun = (run: TestRun) => run.format === "node-tap" && ["browser", "visual", "e2e"].includes(run.kind) ? "Playwright" : runnerNames[run.format];
+export function summarizeTestTechnologies(projects: ProjectQA[]) {
+  const result = new Map<string, { name: string; executed: number | null; projects: number; unmeasuredProjects: number }>();
+  for (const project of projects) {
+    const names = new Set([...project.suites.map(suite => runnerFromSuite(suite.tool)), ...project.runs.map(runnerFromRun).filter(Boolean)]);
+    for (const name of names) {
+      const runs = project.runs.filter(run => runnerFromRun(run) === name);
+      const entry = result.get(name) ?? { name, executed: null, projects: 0, unmeasuredProjects: 0 };
+      entry.projects++;
+      if (runs.length) entry.executed = (entry.executed ?? 0) + runs.reduce((n, run) => n + run.passed + run.failed + run.flaky, 0);
+      else entry.unmeasuredProjects++;
+      result.set(name, entry);
+    }
+  }
+  return [...result.values()].sort((a, b) => (b.executed ?? -1) - (a.executed ?? -1) || a.name.localeCompare(b.name));
 }

@@ -1,0 +1,22 @@
+{
+  "project": "carto-risques",
+  "total": 121,
+  "passed": 121,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 4762.503385543823,
+  "measuredAt": "2026-10-14T16:44:51.557Z",
+  "environments": [],
+  "kind": "integration",
+  "format": "pytest-json",
+  "dateSource": "report",
+  "sourceUrl": null,
+  "revision": "1e5822e934728f988c3996533140665f79ec013b",
+  "scope": "121 tests backend/ETL exécutés en CI avec deux bases PostGIS isolées ; aucun ignoré",
+  "reportUrl": "/qa/reports/carto-risques-integration.json"
+}

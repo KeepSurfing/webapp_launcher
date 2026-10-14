@@ -1,24 +1,19 @@
-import { useState } from "react";
-import { ArrowUpRight, Check, Code2, Plus, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowUpRight, Check, Code2, ShieldCheck, Sparkles } from "lucide-react";
 import type { MosaicSite } from "../data/sites";
-import { formatDate, formatPercent, getQAAction, qaData, summarizeQA, type QAActionKind } from "../data/qa";
-
+import { formatDate, formatPercent, qaData, summarizeQA, summarizeTestTechnologies } from "../data/qa";
 type Props = { sites: MosaicSite[]; onOpen: (site: MosaicSite, el: HTMLElement) => void };
-
+const technologyStyles: Record<string, { mark: string; accent: string; detail: string }> = {
+  Vitest: { mark: "V", accent: "#c9ed86", detail: "Logique · composants · API" },
+  Playwright: { mark: "P", accent: "#bbaaff", detail: "Parcours navigateur" },
+  "Node.js": { mark: "N", accent: "#8edcba", detail: "Logique · intégration" },
+  pytest: { mark: "py", accent: "#f3c879", detail: "API · traitements de données" },
+  Jest: { mark: "J", accent: "#ed9da9", detail: "Logique · composants" },
+};
 export function QADashboard({ sites, onOpen }: Props) {
-  const [filter, setFilter] = useState<"all" | "add" | "complete">("all");
   const linked = sites.filter(site => qaData.projects[site.id]);
-  const summary = summarizeQA(linked.map(site => qaData.projects[site.id]));
-  const groups = [
-    { kind: "add" as const, title: "Ajouter des tests", subtitle: "Aucune suite détectée", icon: Plus },
-    { kind: "complete" as const, title: "Compléter les tests", subtitle: "Périmètres à renforcer", icon: Sparkles },
-  ];
-  const projectsFor = (kind: QAActionKind) => linked.filter(site => getQAAction(qaData.projects[site.id], site.id).kind === kind);
-  const counts = { add: projectsFor("add").length, complete: projectsFor("complete").length };
-  const reviewed = linked.filter(site => ["add", "complete"].includes(getQAAction(qaData.projects[site.id], site.id).kind));
-  const other = linked.filter(site => !reviewed.includes(site));
+  const projects = linked.map(site => qaData.projects[site.id]);
+  const summary = summarizeQA(projects), technologies = summarizeTestTechnologies(projects);
   const failed = summary.failed + summary.errors;
-
   return <section className="qa-dashboard" aria-labelledby="qa-heading">
     <div className="qa-heading">
       <div><span className="qa-eyebrow"><i /> PORTFOLIO QA</span><h2 id="qa-heading">La qualité en clair<span>.</span></h2></div>
@@ -32,9 +27,9 @@ export function QADashboard({ sites, onOpen }: Props) {
         {failed > 0 && <span className="qa-alert">{failed} échecs / erreurs</span>}
       </article>
       <article className="qa-metric qa-metric-coverage">
-        <div className="qa-metric-top"><span>Couverture des lignes</span><ShieldCheck size={19} /></div>
+        <div className="qa-metric-top"><span>Couverture du code</span><ShieldCheck size={19} /></div>
         <strong>{summary.coverage === null ? "—" : summary.coverage.toLocaleString("fr-FR")}<small>{summary.coverage === null ? "" : "%"}</small></strong>
-        <div className="qa-meter" role="meter" aria-label="Couverture des lignes mesurées" aria-valuemin={0} aria-valuemax={100} aria-valuenow={summary.coverage ?? 0} aria-valuetext={formatPercent(summary.coverage)}><i style={{ width: (summary.coverage ?? 0) + "%" }} /></div>
+        <div className="qa-meter" role="meter" aria-label="Couverture du code mesuré" aria-valuemin={0} aria-valuemax={100} aria-valuenow={summary.coverage ?? 0} aria-valuetext={formatPercent(summary.coverage)}><i style={{ width: (summary.coverage ?? 0) + "%" }} /></div>
         <div className="qa-metric-bottom"><span>{summary.coverageProjects} / {summary.projects} projets mesurés</span></div>
       </article>
       <article className="qa-metric">
@@ -46,31 +41,21 @@ export function QADashboard({ sites, onOpen }: Props) {
       <article className="qa-metric">
         <div className="qa-metric-top"><span>Fichiers de tests</span><Code2 size={19} /></div>
         <strong>{summary.files}</strong>
-        <div className="qa-metric-bottom"><span>Unitaires · UI · E2E</span><span className="qa-tech-count">{summary.tools.length} outils</span></div>
+        <div className="qa-metric-bottom"><span>Unitaires · UI · E2E</span><span className="qa-tech-count">{technologies.length} outils</span></div>
       </article>
     </div>
-    <div className="qa-priorities-top"><h3>Prochaines étapes <span>{reviewed.length}</span></h3>
-      <div className="qa-filters" aria-label="Filtrer les priorités QA">
-        {([["all", "Tout", reviewed.length], ["add", "Ajouter", counts.add], ["complete", "Compléter", counts.complete]] as const).map(([value, label, count]) =>
-          <button key={value} className={filter === value ? "active" : ""} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label}<span>{count}</span></button>)}
-      </div>
-    </div>
-    <div className={"qa-action-panels " + (filter !== "all" || !counts.add || !counts.complete ? "qa-action-single" : "")}>
-      {groups.filter(group => filter === group.kind || (filter === "all" && counts[group.kind] > 0)).map(group => <section className={"qa-action-panel qa-action-" + group.kind} key={group.kind} aria-label={group.title}>
-        <div className="qa-action-heading"><span className="qa-action-symbol"><group.icon size={20} /></span><div><h4>{group.title}</h4><p>{group.subtitle}</p></div><strong>{counts[group.kind].toString().padStart(2, "0")}</strong></div>
-        <div className="qa-project-list">{projectsFor(group.kind).map(site => {
-          const qa = qaData.projects[site.id], action = getQAAction(qa, site.id), result = summarizeQA([qa]);
-          return <button className="qa-project" key={site.id} onClick={event => onOpen(site, event.currentTarget)} aria-label={"Voir les tests de " + site.name}>
-            <span className="qa-project-avatar" style={{ color: site.accent }}>{site.mark}</span>
-            <span className="qa-project-copy"><strong>{site.name}</strong><small>{action.headline}</small></span>
-            <span className="qa-project-value">{group.kind === "add" ? <span className="qa-zero">À créer</span> : <><b>{qa.coverage ? formatPercent(qa.coverage.metrics.lines?.pct ?? null) : result.executed ? result.executed : "—"}</b><small>{qa.coverage ? "couverture" : result.executed ? "tests exécutés" : "rapport absent"}</small></>}</span>
-            <ArrowUpRight className="qa-project-arrow" size={17} />
-          </button>;
-        })}</div>
-        {counts[group.kind] === 0 && <p className="qa-empty">Aucun projet dans cette catégorie.</p>}
-      </section>)}
-    </div>
-    {other.length > 0 && <div className="qa-other">{other.map(site => <button key={site.id} onClick={event => onOpen(site, event.currentTarget)}>{site.name}<b>{formatPercent(qaData.projects[site.id].coverage?.metrics.lines?.pct ?? null)}</b>{qaData.projects[site.id].changeUrl ? "en revue" : getQAAction(qaData.projects[site.id], site.id).label}<ArrowUpRight size={14} /></button>)}</div>}
-    <details className="qa-method"><summary>Sources & méthode</summary><p>{summary.executed} tests exécutés sur {summary.reportProjects} projets. Couverture pondérée sur {summary.coverageProjects} projets uniquement. Les rapports absents restent non mesurés.</p><p>Les priorités correspondent aux sources inspectées : absence de suite, code non couvert par les tests unitaires, ou parcours sans tests identifiés. Les mesures et les exécutions manquantes sont distinguées des tests à écrire dans les fiches.</p></details>
+    <div className="qa-priorities-top"><h3>Technos <span>{technologies.length}</span></h3></div>
+    <div className="qa-technologies">{technologies.map(technology => {
+      const style = technologyStyles[technology.name] ?? { mark: technology.name.slice(0, 2), accent: "#c5cfc7", detail: "Tests automatisés" };
+      return <article className="qa-technology" key={technology.name} style={{ "--technology-accent": style.accent } as import("react").CSSProperties}>
+        <div className="qa-technology-top"><span className="qa-technology-mark" aria-hidden="true">{style.mark}</span><h4>{technology.name}</h4></div>
+        <strong>{technology.executed === null ? "—" : technology.executed.toLocaleString("fr-FR")}</strong>
+        <span className="qa-technology-count">{technology.executed === null ? "Exécution à mesurer" : "tests exécutés"}</span>
+        <div className="qa-technology-bottom"><span>{style.detail}</span><span>{technology.projects} {technology.projects === 1 ? "projet" : "projets"}</span></div>
+        {technology.executed !== null && technology.unmeasuredProjects > 0 && <small className="qa-technology-pending">+ {technology.unmeasuredProjects} projets sans rapport</small>}
+      </article>;
+    })}</div>
+    <div className="qa-other">{linked.map(site => <button key={site.id} onClick={event => onOpen(site, event.currentTarget)} aria-label={"Voir les tests de " + site.name}>{site.name}<b>{formatPercent(qaData.projects[site.id].coverage?.metrics.lines?.pct ?? null)}</b><ArrowUpRight size={14} /></button>)}</div>
+    <details className="qa-method"><summary>Sources & méthode</summary><p>Couverture pondérée des lignes du code mesuré. Comptages par outil issus des derniers rapports : tests réussis, échoués ou instables, hors tests ignorés. Un rapport absent reste non mesuré.</p></details>
   </section>;
 }

@@ -1,0 +1,22 @@
+{
+  "project": "rgpd-scan",
+  "total": 11,
+  "passed": 11,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 8358.909233,
+  "measuredAt": "2026-10-14T16:42:29.401Z",
+  "environments": [],
+  "kind": "browser",
+  "format": "node-tap",
+  "dateSource": "file",
+  "sourceUrl": null,
+  "revision": "defece5d67ceda8e36f1d5679c999e87be80900a",
+  "scope": "Navigation et scan avec Chrome sur un serveur HTTP local ; inclut le test parent Node.js",
+  "reportUrl": "/qa/reports/rgpd-scan-browser.json"
+}

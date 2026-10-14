@@ -15,6 +15,7 @@
   "kind": "e2e",
   "format": "playwright",
   "dateSource": "report",
+  "sourceUrl": null,
   "revision": "01dfceaf4af8ae885a79ad6c609bf53b1265716d",
   "scope": "Chrome mobile · site local et formulaires de démonstration · branche QA",
   "reportUrl": "/qa/reports/petsitter-e2e.json"

@@ -1,0 +1,29 @@
+{
+  "project": "keepsurfing",
+  "metrics": {
+    "lines": {
+      "total": 315,
+      "covered": 304,
+      "pct": 96.5
+    },
+    "branches": {
+      "total": 410,
+      "covered": 278,
+      "pct": 67.8
+    },
+    "functions": {
+      "total": 68,
+      "covered": 67,
+      "pct": 98.5
+    },
+    "statements": {
+      "total": 361,
+      "covered": 328,
+      "pct": 90.9
+    }
+  },
+  "measuredAt": "2026-10-14T16:42:20.022Z",
+  "scope": "Toutes les routes api/*.js ; code client et pages statiques hors périmètre",
+  "revision": "2c09afd1deeca3abd998b9afe5d7febcd78ee065",
+  "reportUrl": "/qa/reports/keepsurfing-coverage.json"
+}

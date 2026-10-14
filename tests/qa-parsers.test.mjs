@@ -45,3 +45,17 @@ test("Node TAP uses the final summary and accounts for interruptions", () => {
 test("truncated Node output is not a successful test report", () => {
   assert.throws(() => parseRun("ok 1 - a test\n", "node-tap"), /incomplet/);
 });
+
+test("pytest counts preserve skipped PostGIS tests without reporting them as passed", () => {
+  const result = parseRun({created:1700000000,duration:2,summary:{total:121,passed:78,skipped:43}},"pytest-json");
+  assert.equal(result.passed,78);assert.equal(result.skipped,43);assert.equal(result.total,121);
+  assert.throws(()=>parseRun({summary:{total:5,passed:6}},"pytest-json"));
+});
+
+test("CI Playwright summaries retain executed and ignored counts and reject incomplete totals",()=>{
+ const report={total:6,passed:3,failed:1,skipped:1,flaky:1,measuredAt:"2026-10-14T16:47:58Z",environments:["chromium"]};
+ const parsed=parseRun(report,"playwright-summary");
+ assert.equal(parsed.passed,3);assert.equal(parsed.flaky,1);assert.equal(parsed.skipped,1);assert.equal(parsed.durationMs,null);
+ assert.throws(()=>parseRun({...report,total:7},"playwright-summary"));
+ assert.throws(()=>parseRun({total:6},"playwright-summary"));
+});

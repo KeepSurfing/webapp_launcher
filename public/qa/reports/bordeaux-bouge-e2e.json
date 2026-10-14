@@ -15,6 +15,7 @@
   "kind": "e2e",
   "format": "playwright",
   "dateSource": "report",
+  "sourceUrl": null,
   "revision": "e3e2714c45a085449ea497d4f94cef552ffa2341",
   "scope": "Chrome mobile · composants réels, événements et API de test isolés · branche QA",
   "reportUrl": "/qa/reports/bordeaux-bouge-e2e.json"

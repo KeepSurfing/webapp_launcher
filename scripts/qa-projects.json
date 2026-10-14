@@ -34,45 +34,46 @@
     {
       "id": "keepsurfing",
       "repository": "KeepSurfing/Portfolio",
-      "path": "../Portfolio/Portfolio",
+      "path": "work/qa-sources/portfolio-complete",
       "focus": [
-        "Rendu visuel sur ordinateur et mobile",
-        "Navigation et changement de thème",
-        "Réservation et état de la grille des dépôts"
-      ]
+        "API GitHub : erreurs, délais et données absentes",
+        "Confidentialité des liens et extraction HTML",
+        "Navigation Contact et réanalyse sur ordinateur/mobile"
+      ],
+      "changeUrl": "https://github.com/KeepSurfing/Portfolio/pull/2"
     },
     {
       "id": "rgpd-scan",
       "repository": "KeepSurfing/RGPD_scan",
       "path": "../RGPD_scan",
       "focus": [
-        "Classification des cookies et calcul de l’indice",
-        "Protection réseau et adresses privées",
-        "Navigation, redirections et stockage des frames",
-        "Rapports partiels et protection des détails payants"
-      ]
+        "Scan et score, protections réseau, frames et stockage",
+        "Paiement confirmé, signatures et doublons Stripe",
+        "PDF, email, avis et limites de requêtes"
+      ],
+      "changeUrl": null
     },
     {
       "id": "orientation",
       "repository": "KeepSurfing/ConseillerOrientation",
-      "path": "work/qa-sources/orientation",
+      "path": "work/qa-sources/orientation-complete",
       "focus": [
-        "Scores RIASEC et correspondance avec les métiers",
-        "Quiz, favoris et composants interactifs",
-        "Navigation mobile et parcours du catalogue",
-        "Synchronisation des sources métiers"
-      ]
+        "Quiz RIASEC, catalogue et composants",
+        "Favoris : erreurs, comparaisons et réponses tardives",
+        "Analytics sans données personnelles ; synchronisation Prisma"
+      ],
+      "changeUrl": "https://github.com/KeepSurfing/ConseillerOrientation/pull/1"
     },
     {
       "id": "carto-risques",
       "repository": "KeepSurfing/CartoRisques",
-      "path": "work/qa-sources/carto-risques",
+      "path": "work/qa-sources/carto-complete",
       "focus": [
-        "Analyse d’un lieu et cumul des risques",
-        "Disponibilité et fraîcheur des sources",
-        "Interface cartographique et parcours navigateur",
-        "API et chaîne d’import des données géographiques"
-      ]
+        "Analyse statique, cumul et tuiles géographiques",
+        "Recherche, annulations et parcours ordinateur/mobile",
+        "API Python et ETL avec PostGIS isolé en CI"
+      ],
+      "changeUrl": "https://github.com/KeepSurfing/CartoRisques/pull/1"
     }
   ]
 }

@@ -9,8 +9,8 @@
   "todo": 0,
   "expectedFailures": 0,
   "errors": 0,
-  "durationMs": 18370.335,
-  "measuredAt": "2026-10-14T13:35:12.540Z",
+  "durationMs": 15408.153,
+  "measuredAt": "2026-10-14T16:23:56.719Z",
   "environments": [
     "desktop",
     "mobile"
@@ -18,7 +18,8 @@
   "kind": "e2e",
   "format": "playwright",
   "dateSource": "report",
-  "revision": "32892d1794884aff335f379b84bead378796f478",
-  "scope": "Parcours frontend sur Chrome, ordinateur et mobile ; API simulées",
+  "sourceUrl": null,
+  "revision": "1e5822e934728f988c3996533140665f79ec013b",
+  "scope": "11 parcours frontend ordinateur/mobile ; réponses API simulées",
   "reportUrl": "/qa/reports/carto-risques-e2e.json"
 }

@@ -1,0 +1,29 @@
+{
+  "project": "rgpd-scan",
+  "metrics": {
+    "lines": {
+      "total": 977,
+      "covered": 894,
+      "pct": 91.5
+    },
+    "branches": {
+      "total": 546,
+      "covered": 374,
+      "pct": 68.5
+    },
+    "functions": {
+      "total": 147,
+      "covered": 126,
+      "pct": 85.7
+    },
+    "statements": {
+      "total": 1354,
+      "covered": 1066,
+      "pct": 78.7
+    }
+  },
+  "measuredAt": "2026-10-14T16:42:30.240Z",
+  "scope": "Routes app/api + lib/server : couverture fusionnée Vitest et navigateur c8 ; interface exclue",
+  "revision": "defece5d67ceda8e36f1d5679c999e87be80900a",
+  "reportUrl": "/qa/reports/rgpd-scan-coverage.json"
+}

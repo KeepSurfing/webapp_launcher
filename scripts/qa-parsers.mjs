@@ -27,6 +27,25 @@ export function parseRun(report, format) {
     return { total, passed, failed, skipped, flaky: 0, cancelled, todo,
       expectedFailures: 0, errors: 0, durationMs: read("duration_ms"), measuredAt: null, environments: [] };
   }
+  if (format === "pytest-json") {
+    const summary = report?.summary;
+    const total = count(summary?.total), passed = count(summary?.passed ?? 0);
+    const failed = count(summary?.failed ?? 0), skipped = count(summary?.skipped ?? 0), error = count(summary?.error ?? 0);
+    if (total === null || [passed, failed, skipped, error].some(value => value === null) || passed + failed + skipped + error !== total)
+      throw new Error("Comptage pytest incohérent");
+    return { total, passed, failed: failed + error, skipped, flaky: 0, cancelled: 0, todo: 0,
+      expectedFailures: 0, errors: 0, durationMs: Number.isFinite(report.duration) ? report.duration * 1000 : null,
+      measuredAt: Number.isFinite(report.created) ? new Date(report.created * 1000).toISOString() : null, environments: [] };
+  }
+  if (format === "playwright-summary") {
+    const keys = ["total", "passed", "failed", "skipped", "flaky"];
+    if (keys.some(key => count(report[key]) === null) || report.passed + report.failed + report.skipped + report.flaky !== report.total)
+      throw new Error("Résumé Playwright incohérent");
+    return { total: report.total, passed: report.passed, failed: report.failed, skipped: report.skipped, flaky: report.flaky,
+      cancelled: 0, todo: 0, expectedFailures: 0, errors: 0, durationMs: null,
+      measuredAt: typeof report.measuredAt === "string" && !Number.isNaN(Date.parse(report.measuredAt)) ? report.measuredAt : null,
+      environments: Array.isArray(report.environments) ? report.environments.filter(value => typeof value === "string") : [] };
+  }
   if (format === "playwright") {
     if (!report.stats || !Array.isArray(report.suites)) throw new Error("Rapport Playwright invalide");
     const tests = [];

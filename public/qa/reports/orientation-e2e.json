@@ -1,0 +1,24 @@
+{
+  "project": "orientation",
+  "total": 28,
+  "passed": 28,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": null,
+  "measuredAt": "2026-10-14T16:47:58.0107721Z",
+  "environments": [
+    "chromium"
+  ],
+  "kind": "e2e",
+  "format": "playwright-summary",
+  "dateSource": "report",
+  "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation/actions/runs/38600568920/job/115979387664",
+  "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
+  "scope": "28 parcours Chromium validés en CI ; résumé du job, rapport détaillé non archivé",
+  "reportUrl": "/qa/reports/orientation-e2e.json"
+}

@@ -1,7 +1,7 @@
 {
   "project": "orientation",
-  "total": 215,
-  "passed": 215,
+  "total": 232,
+  "passed": 232,
   "failed": 0,
   "skipped": 0,
   "flaky": 0,
@@ -9,13 +9,14 @@
   "todo": 0,
   "expectedFailures": 0,
   "errors": 0,
-  "durationMs": 77708.20483398438,
-  "measuredAt": "2026-10-14T13:35:57.250Z",
+  "durationMs": 52449.19140625,
+  "measuredAt": "2026-10-14T16:19:07.746Z",
   "environments": [],
   "kind": "unit",
   "format": "vitest",
   "dateSource": "report",
-  "revision": "fb80d93e71a44ae2e9ef5c602d49c7ffe7a02a99",
-  "scope": "Suite Vitest : logique métier et composants ; E2E non exécutés",
+  "sourceUrl": null,
+  "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
+  "scope": "232 tests métier, composants et API ; données et requêtes simulées ; E2E non comptés ici",
   "reportUrl": "/qa/reports/orientation-unit.json"
 }

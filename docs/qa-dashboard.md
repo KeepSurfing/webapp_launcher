@@ -42,7 +42,7 @@ Mettre les rapports dans `work/qa-reports/` puis ajouter un manifeste `<id-appli
 ```
 
 Types : `unit`, `component`, `e2e`, `browser`, `visual`, `integration`.
-Formats : `vitest`, `jest`, `playwright` (rapport JSON complet), `node-tap` (résumé TAP complet).
+Formats : `vitest`, `jest`, `playwright` (rapport JSON complet), `node-tap` (résumé TAP complet), `pytest-json`, `playwright-summary` (comptage vérifié dans un job CI lié).
 
 Exemples à exécuter dans le dépôt concerné, avec les outils déjà installés :
 
@@ -78,20 +78,24 @@ Les tests QA vérifient les calculs et les cas qui pourraient présenter des chi
 
 Références : [Reporters Playwright](https://playwright.dev/docs/test-reporters), [Reporters Vitest](https://vitest.dev/guide/reporters), [Couverture Vitest](https://vitest.dev/guide/coverage).
 
-## Priorités identifiées — 14 octobre 2026
+## Mesures actualisées — 14 octobre 2026
 
-| Projet | Action | Périmètre à traiter |
-|---|---|---|
-| PetSitter | 100 % mesuré | 9 tests de logique/composants + 2 parcours Chrome mobile |
-| Toit Rénov’ | 100 % mesuré | 22 tests de logique/DOM + 2 parcours Chrome mobile |
-| Bordeaux Bouge | 100 % mesuré | 73 tests métier/API/UI + 2 parcours Chrome mobile avec fixtures |
-| CartoRisques | Compléter | Cas limites de l’analyse statique et des tuiles ; composants d’analyse et recherche |
-| Conseiller d’orientation | Compléter | FavorisClient, API analytics et repository Prisma |
-| RGPD Scan | Compléter | Checkout, webhook, export PDF et envoi du rapport |
-| KeepSurfing | Compléter | API GitHub, délais et erreurs réseau |
+Le libellé « Couverture du code » désigne la proportion pondérée des lignes couvertes dans les périmètres mesurés. La section « Technos » compte les tests réellement exécutés par Vitest, Playwright et pytest, hors tests ignorés. Un test Node.js pilotant Playwright est attribué à Playwright une seule fois ; Testing Library et les outils de couverture ne sont pas comptés comme des runners supplémentaires.
 
-Les trois premiers projets disposent maintenant de suites ajoutées sur les branches `codex/qa-coverage`, publiées dans leurs PR GitHub. Les mesures affichées portent sur ces commits en revue, avec 100 % pour les lignes, instructions, fonctions et branches. Les services de Bordeaux Bouge sont simulés ; sa suite navigateur utilise des événements et réponses API de test. Les rapports ne prétendent pas vérifier les fournisseurs en production. Les priorités de CartoRisques et du Conseiller d’orientation proviennent notamment des rapports de couverture **unitaires** : les zones citées peuvent déjà être traversées par des E2E. Pour RGPD Scan et KeepSurfing, les suites inspectées ne testent pas les routes API citées.
+| Projet | Tests validés | Couverture du code mesuré | Publication |
+|---|---:|---|---|
+| PetSitter | 11 | 100 % : logique et composants | PR 1 |
+| Toit Rénov’ | 24 | 100 % : JavaScript applicatif | PR 1 |
+| Bordeaux Bouge | 75 | 100 % : métier, API et UI | PR 1 |
+| KeepSurfing | 26 | 96,5 % : toutes les routes API | PR 2 |
+| RGPD Scan | 51 | 91,5 % : toutes les routes API et lib/server | main |
+| Orientation | 260 | 73,1 % : src, hors adaptateur et Prisma généré | PR 1 |
+| CartoRisques | 172 | 65,1 % : frontend, Python exclu | PR 1 |
 
-Les fiches distinguent les tests à écrire des actions de mesure et d’exécution. RGPD Scan nécessite un rapport de couverture et l’exécution de sa suite navigateur ; KeepSurfing, le relevé de sa suite visuelle ; CartoRisques, les résultats Python API/ETL ; le Conseiller d’orientation, ses résultats E2E. L’absence de ces rapports n’est pas une preuve d’absence de tests.
+Les cas précédemment identifiés ont été ajoutés : API du portfolio, favoris/analytics/repository Prisma, checkout/webhook/PDF/email, analyse statique/tuiles/recherche. CartoRisques exécute 121 tests Python avec PostGIS isolé en CI, dont les 43 ignorés en local. Les trois premiers projets restent à 100 % sur leur périmètre ; les autres rapports incluent aussi les fichiers non couverts, sans réduire artificiellement leur périmètre.
 
-Les recommandations précises correspondent à la version inspectée. Quand la collecte détecte un nouveau commit, les anciennes recommandations ne sont plus présentées comme des lacunes vérifiées ; le classement utilise les nouvelles métriques disponibles, ou demande une mesure.
+La couverture de RGPD Scan fusionne les résultats unitaires Vitest et navigateur c8 par fichier source, via Istanbul. Les onze tests navigateur incluent le test parent Node.js. La mesure exclut l’interface et ne garantit aucune conformité juridique.
+
+Le portfolio exécute deux scénarios fonctionnels sur deux tailles d’écran (quatre exécutions), sans ses comparaisons visuelles dont les références sont absentes. Les 28 E2E Chromium d’Orientation passent en CI. Leur résumé de comptage est importé depuis le job GitHub lié ; le rapport détaillé n’est pas archivé.
+
+Les versions en revue sont liées dans chaque volet. Les recommandations restantes correspondent aux fichiers et rapports inspectés : pages d’Orientation, carte et protocole statique de CartoRisques, branches du scanner/configurations de RGPD Scan et cas limites/visuels du portfolio. Un changement de commit invalide ces recommandations précises. Les tests, la compilation et les contrôles CI passent sur les quatre versions complétées.

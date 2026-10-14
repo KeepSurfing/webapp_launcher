@@ -60,6 +60,7 @@ for (const project of config.projects) {
       const content = await fs.readFile(path.join(dir, file), "utf8");
       let kind = "unit", tool = "Node.js";
       if (file.endsWith(".py")) { tool = "pytest"; kind = /backend\/tests/.test(file) ? "integration" : "unit"; }
+      else if (/from\s*["']vitest["']|require\(["']vitest["']\)/.test(content)) { tool = "Vitest"; kind = /\.tsx$/.test(file) ? "component" : "unit"; }
       else if (/playwright|(^|\/)e2e\//.test(content + " " + file)) { tool = /node:test/.test(content) ? "Node.js + Playwright" : "Playwright";
         kind = /visual|toHaveScreenshot/.test(content + " " + file) ? "visual" : /browser\.test/.test(file) ? "browser" : "e2e"; }
       else if (/vitest/.test(content) || (hasVitest && !/node:test/.test(content))) { tool = "Vitest"; kind = /\.tsx$/.test(file) ? "component" : "unit"; }
@@ -79,7 +80,7 @@ for (const project of config.projects) {
     const fileDate = (await fs.stat(file)).mtime.toISOString();
     qa.runs.push({ ...parsed, kind: report.kind, format: report.format,
       measuredAt: parsed.measuredAt ?? fileDate, dateSource: parsed.measuredAt ? "report" : "file",
-      revision: report.revision ?? null, scope: report.scope ?? "Suite sélectionnée",
+      sourceUrl: report.sourceUrl ?? null, revision: report.revision ?? null, scope: report.scope ?? "Suite sélectionnée",
       reportUrl: "/qa/reports/" + project.id + "-" + report.kind + ".json" });
   }
   if (new Set(qa.runs.map(r => r.kind)).size !== qa.runs.length) throw new Error("Une seule exécution par suite est permise");
