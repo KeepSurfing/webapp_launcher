@@ -1,0 +1,25 @@
+{
+  "project": "keepsurfing",
+  "total": 12,
+  "passed": 12,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 34584.486000000004,
+  "measuredAt": "2026-10-14T19:04:40.957Z",
+  "environments": [
+    "desktop-chromium",
+    "mobile-chromium"
+  ],
+  "kind": "visual",
+  "format": "playwright-summary",
+  "dateSource": "report",
+  "sourceUrl": "https://github.com/KeepSurfing/Portfolio/actions/runs/38620513322/job/116046517818",
+  "revision": "1a1ece418b2c3f30364e7eb99b5c756b1e8e5007",
+  "scope": "12 scénarios ordinateur/mobile dont 8 comparaisons aux PNG Linux versionnés ; heure fixe, API fictives et services externes bloqués",
+  "reportUrl": "/qa/reports/keepsurfing-visual.json"
+}

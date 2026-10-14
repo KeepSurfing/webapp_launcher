@@ -9,17 +9,17 @@
   "todo": 0,
   "expectedFailures": 0,
   "errors": 0,
-  "durationMs": 15408.153,
-  "measuredAt": "2026-10-14T16:23:56.719Z",
+  "durationMs": 29366.755999999998,
+  "measuredAt": "2026-10-14T19:05:09.928Z",
   "environments": [
     "desktop",
     "mobile"
   ],
   "kind": "e2e",
-  "format": "playwright",
+  "format": "playwright-summary",
   "dateSource": "report",
-  "sourceUrl": null,
-  "revision": "1e5822e934728f988c3996533140665f79ec013b",
+  "sourceUrl": "https://github.com/KeepSurfing/CartoRisques/actions/runs/38620553439/job/116046655432",
+  "revision": "7463b1953cc9f141be62968c9857d2087154794a",
   "scope": "11 parcours frontend ordinateur/mobile ; réponses API simulées",
   "reportUrl": "/qa/reports/carto-risques-e2e.json"
 }

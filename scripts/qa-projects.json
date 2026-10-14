@@ -36,9 +36,8 @@
       "repository": "KeepSurfing/Portfolio",
       "path": "work/qa-sources/portfolio-complete",
       "focus": [
-        "API GitHub : erreurs, délais et données absentes",
-        "Confidentialité des liens et extraction HTML",
-        "Navigation Contact et réanalyse sur ordinateur/mobile"
+        "API GitHub : erreurs, données absentes et archives de repli",
+        "Comparaisons visuelles Linux, thèmes, réservation et navigation"
       ],
       "changeUrl": "https://github.com/KeepSurfing/Portfolio/pull/2"
     },
@@ -47,9 +46,9 @@
       "repository": "KeepSurfing/RGPD_scan",
       "path": "../RGPD_scan",
       "focus": [
-        "Scan et score, protections réseau, frames et stockage",
-        "Paiement confirmé, signatures et doublons Stripe",
-        "PDF, email, avis et limites de requêtes"
+        "Protections réseau, limites de temps, cookies et stockage",
+        "API de paiement et export ; client en streaming",
+        "Interface : rapport, consentement, emails, avis et partage"
       ],
       "changeUrl": null
     },
@@ -58,9 +57,9 @@
       "repository": "KeepSurfing/ConseillerOrientation",
       "path": "work/qa-sources/orientation-complete",
       "focus": [
-        "Quiz RIASEC, catalogue et composants",
-        "Favoris : erreurs, comparaisons et réponses tardives",
-        "Analytics sans données personnelles ; synchronisation Prisma"
+        "Pages, fiches métiers, articles et métadonnées de partage",
+        "Admin : données de suivi et authentification",
+        "Quiz, favoris, analytics, PWA et synchronisation métier"
       ],
       "changeUrl": "https://github.com/KeepSurfing/ConseillerOrientation/pull/1"
     },
@@ -69,9 +68,9 @@
       "repository": "KeepSurfing/CartoRisques",
       "path": "work/qa-sources/carto-complete",
       "focus": [
-        "Analyse statique, cumul et tuiles géographiques",
-        "Recherche, annulations et parcours ordinateur/mobile",
-        "API Python et ETL avec PostGIS isolé en CI"
+        "Carte : couches, cumul, erreurs, sélection et géolocalisation",
+        "Données statiques gzip, cache et protocole de tuiles",
+        "Sources, rapports officiels, accessibilité ; API/ETL PostGIS"
       ],
       "changeUrl": "https://github.com/KeepSurfing/CartoRisques/pull/1"
     }

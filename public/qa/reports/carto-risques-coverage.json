@@ -3,27 +3,27 @@
   "metrics": {
     "lines": {
       "total": 2786,
-      "covered": 1815,
-      "pct": 65.1
+      "covered": 2738,
+      "pct": 98.3
     },
     "branches": {
-      "total": 601,
-      "covered": 510,
-      "pct": 84.9
+      "total": 1015,
+      "covered": 946,
+      "pct": 93.2
     },
     "functions": {
-      "total": 144,
-      "covered": 89,
-      "pct": 61.8
+      "total": 163,
+      "covered": 154,
+      "pct": 94.5
     },
     "statements": {
       "total": 2786,
-      "covered": 1815,
-      "pct": 65.1
+      "covered": 2738,
+      "pct": 98.3
     }
   },
-  "measuredAt": "2026-10-14T16:49:49.710Z",
+  "measuredAt": "2026-10-14T19:13:18.461Z",
   "scope": "Tout frontend/src/**/*.ts(x), hors tests et fixtures ; couverture Python non mesurée",
-  "revision": "1e5822e934728f988c3996533140665f79ec013b",
+  "revision": "7463b1953cc9f141be62968c9857d2087154794a",
   "reportUrl": "/qa/reports/carto-risques-coverage.json"
 }

@@ -2,28 +2,28 @@
   "project": "orientation",
   "metrics": {
     "lines": {
-      "total": 1544,
-      "covered": 1128,
-      "pct": 73.1
+      "total": 1545,
+      "covered": 1436,
+      "pct": 92.9
     },
     "branches": {
-      "total": 984,
-      "covered": 622,
-      "pct": 63.2
+      "total": 985,
+      "covered": 793,
+      "pct": 80.5
     },
     "functions": {
       "total": 478,
-      "covered": 339,
-      "pct": 70.9
+      "covered": 459,
+      "pct": 96
     },
     "statements": {
-      "total": 1746,
-      "covered": 1258,
-      "pct": 72.1
+      "total": 1747,
+      "covered": 1592,
+      "pct": 91.1
     }
   },
-  "measuredAt": "2026-10-14T16:20:00.720Z",
+  "measuredAt": "2026-10-14T19:13:18.458Z",
   "scope": "Tout src/**/*.ts(x), hors tests, Prisma généré et connexion src/lib/prisma.ts",
-  "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
+  "revision": "9d8aff170ce0829230a9647adb142ae2ee4e6b29",
   "reportUrl": "/qa/reports/orientation-coverage.json"
 }

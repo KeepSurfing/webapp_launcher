@@ -42,7 +42,7 @@ export function parseRun(report, format) {
     if (keys.some(key => count(report[key]) === null) || report.passed + report.failed + report.skipped + report.flaky !== report.total)
       throw new Error("Résumé Playwright incohérent");
     return { total: report.total, passed: report.passed, failed: report.failed, skipped: report.skipped, flaky: report.flaky,
-      cancelled: 0, todo: 0, expectedFailures: 0, errors: 0, durationMs: null,
+      cancelled: 0, todo: 0, expectedFailures: 0, errors: 0, durationMs: Number.isFinite(report.durationMs) && report.durationMs >= 0 ? report.durationMs : null,
       measuredAt: typeof report.measuredAt === "string" && !Number.isNaN(Date.parse(report.measuredAt)) ? report.measuredAt : null,
       environments: Array.isArray(report.environments) ? report.environments.filter(value => typeof value === "string") : [] };
   }

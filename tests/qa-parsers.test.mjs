@@ -56,6 +56,8 @@ test("CI Playwright summaries retain executed and ignored counts and reject inco
  const report={total:6,passed:3,failed:1,skipped:1,flaky:1,measuredAt:"2026-10-14T16:47:58Z",environments:["chromium"]};
  const parsed=parseRun(report,"playwright-summary");
  assert.equal(parsed.passed,3);assert.equal(parsed.flaky,1);assert.equal(parsed.skipped,1);assert.equal(parsed.durationMs,null);
+ assert.equal(parseRun({...report,durationMs:500},"playwright-summary").durationMs,500);
+ assert.equal(parseRun({...report,durationMs:-1},"playwright-summary").durationMs,null);
  assert.throws(()=>parseRun({...report,total:7},"playwright-summary"));
  assert.throws(()=>parseRun({total:6},"playwright-summary"));
 });

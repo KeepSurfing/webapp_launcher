@@ -9,14 +9,14 @@
   "todo": 0,
   "expectedFailures": 0,
   "errors": 0,
-  "durationMs": 4762.503385543823,
-  "measuredAt": "2026-10-14T16:44:51.557Z",
+  "durationMs": 5302.67333984375,
+  "measuredAt": "2026-10-14T19:05:17.133Z",
   "environments": [],
   "kind": "integration",
   "format": "pytest-json",
   "dateSource": "report",
-  "sourceUrl": null,
-  "revision": "1e5822e934728f988c3996533140665f79ec013b",
+  "sourceUrl": "https://github.com/KeepSurfing/CartoRisques/actions/runs/38620553439/job/116046654848",
+  "revision": "7463b1953cc9f141be62968c9857d2087154794a",
   "scope": "121 tests backend/ETL exécutés en CI avec deux bases PostGIS isolées ; aucun ignoré",
   "reportUrl": "/qa/reports/carto-risques-integration.json"
 }

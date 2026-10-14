@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "collectedAt": "2026-10-14T16:53:27.106Z",
+  "collectedAt": "2026-10-14T19:13:19.156Z",
   "projects": {
     "petsitter": {
       "repository": "KeepSurfing/petsitter",
       "sourceUrl": "https://github.com/KeepSurfing/petsitter",
       "changeUrl": "https://github.com/KeepSurfing/petsitter/pull/1",
-      "inspectedAt": "2026-10-14T16:53:27.106Z",
+      "inspectedAt": "2026-10-14T19:13:19.156Z",
       "available": true,
       "revision": "01dfceaf4af8ae885a79ad6c609bf53b1265716d",
       "workingTreeChanged": false,
@@ -107,7 +107,7 @@
       "repository": "KeepSurfing/toit-renov",
       "sourceUrl": "https://github.com/KeepSurfing/toit-renov",
       "changeUrl": "https://github.com/KeepSurfing/toit-renov/pull/1",
-      "inspectedAt": "2026-10-14T16:53:27.106Z",
+      "inspectedAt": "2026-10-14T19:13:19.156Z",
       "available": true,
       "revision": "b6a81bf57f8ea4d7f3ac62e1a2b36e689ef2f078",
       "workingTreeChanged": false,
@@ -208,7 +208,7 @@
       "repository": "KeepSurfing/bdx-agenda",
       "sourceUrl": "https://github.com/KeepSurfing/bdx-agenda",
       "changeUrl": "https://github.com/KeepSurfing/bdx-agenda/pull/1",
-      "inspectedAt": "2026-10-14T16:53:27.106Z",
+      "inspectedAt": "2026-10-14T19:13:19.156Z",
       "available": true,
       "revision": "e3e2714c45a085449ea497d4f94cef552ffa2341",
       "workingTreeChanged": false,
@@ -324,9 +324,9 @@
       "repository": "KeepSurfing/Portfolio",
       "sourceUrl": "https://github.com/KeepSurfing/Portfolio",
       "changeUrl": "https://github.com/KeepSurfing/Portfolio/pull/2",
-      "inspectedAt": "2026-10-14T16:53:27.106Z",
+      "inspectedAt": "2026-10-14T19:13:19.156Z",
       "available": true,
-      "revision": "2c09afd1deeca3abd998b9afe5d7febcd78ee065",
+      "revision": "1a1ece418b2c3f30364e7eb99b5c756b1e8e5007",
       "workingTreeChanged": false,
       "suites": [
         {
@@ -345,42 +345,41 @@
         }
       ],
       "focus": [
-        "API GitHub : erreurs, délais et données absentes",
-        "Confidentialité des liens et extraction HTML",
-        "Navigation Contact et réanalyse sur ordinateur/mobile"
+        "API GitHub : erreurs, données absentes et archives de repli",
+        "Comparaisons visuelles Linux, thèmes, réservation et navigation"
       ],
       "coverage": {
         "metrics": {
           "lines": {
             "total": 315,
-            "covered": 304,
-            "pct": 96.5
+            "covered": 314,
+            "pct": 99.7
           },
           "branches": {
             "total": 410,
-            "covered": 278,
-            "pct": 67.8
+            "covered": 372,
+            "pct": 90.7
           },
           "functions": {
             "total": 68,
-            "covered": 67,
-            "pct": 98.5
+            "covered": 68,
+            "pct": 100
           },
           "statements": {
             "total": 361,
-            "covered": 328,
-            "pct": 90.9
+            "covered": 357,
+            "pct": 98.9
           }
         },
-        "measuredAt": "2026-10-14T16:42:20.022Z",
-        "scope": "Toutes les routes api/*.js ; code client et pages statiques hors périmètre",
-        "revision": "2c09afd1deeca3abd998b9afe5d7febcd78ee065",
+        "measuredAt": "2026-10-14T19:13:18.456Z",
+        "scope": "Toutes les routes api/*.js ; code client et pages statiques hors du pourcentage de couverture",
+        "revision": "1a1ece418b2c3f30364e7eb99b5c756b1e8e5007",
         "reportUrl": "/qa/reports/keepsurfing-coverage.json"
       },
       "runs": [
         {
-          "total": 22,
-          "passed": 22,
+          "total": 41,
+          "passed": 41,
           "failed": 0,
           "skipped": 0,
           "flaky": 0,
@@ -388,20 +387,20 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 655.514892578125,
-          "measuredAt": "2026-10-14T16:42:19.250Z",
+          "durationMs": 477.96044921875,
+          "measuredAt": "2026-10-14T17:08:23.530Z",
           "environments": [],
           "kind": "unit",
           "format": "vitest",
           "dateSource": "report",
-          "sourceUrl": null,
-          "revision": "2c09afd1deeca3abd998b9afe5d7febcd78ee065",
-          "scope": "22 cas API, services GitHub simulés",
+          "sourceUrl": "https://github.com/KeepSurfing/Portfolio/actions/runs/38620513321/job/116046513944",
+          "revision": "1a1ece418b2c3f30364e7eb99b5c756b1e8e5007",
+          "scope": "41 cas API, services GitHub simulés",
           "reportUrl": "/qa/reports/keepsurfing-unit.json"
         },
         {
-          "total": 4,
-          "passed": 4,
+          "total": 12,
+          "passed": 12,
           "failed": 0,
           "skipped": 0,
           "flaky": 0,
@@ -409,19 +408,19 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 8631.494999999999,
-          "measuredAt": "2026-10-14T16:25:43.249Z",
+          "durationMs": 34584.486000000004,
+          "measuredAt": "2026-10-14T19:04:40.957Z",
           "environments": [
             "desktop-chromium",
             "mobile-chromium"
           ],
-          "kind": "browser",
-          "format": "playwright",
+          "kind": "visual",
+          "format": "playwright-summary",
           "dateSource": "report",
-          "sourceUrl": null,
-          "revision": "2c09afd1deeca3abd998b9afe5d7febcd78ee065",
-          "scope": "2 scénarios fonctionnels sur ordinateur/mobile ; comparaisons visuelles non exécutées",
-          "reportUrl": "/qa/reports/keepsurfing-browser.json"
+          "sourceUrl": "https://github.com/KeepSurfing/Portfolio/actions/runs/38620513322/job/116046517818",
+          "revision": "1a1ece418b2c3f30364e7eb99b5c756b1e8e5007",
+          "scope": "12 scénarios ordinateur/mobile dont 8 comparaisons aux PNG Linux versionnés ; heure fixe, API fictives et services externes bloqués",
+          "reportUrl": "/qa/reports/keepsurfing-visual.json"
         }
       ]
     },
@@ -429,9 +428,9 @@
       "repository": "KeepSurfing/RGPD_scan",
       "sourceUrl": "https://github.com/KeepSurfing/RGPD_scan",
       "changeUrl": null,
-      "inspectedAt": "2026-10-14T16:53:27.106Z",
+      "inspectedAt": "2026-10-14T19:13:19.156Z",
       "available": true,
-      "revision": "defece5d67ceda8e36f1d5679c999e87be80900a",
+      "revision": "4fd463321efe68d97b6c71c83cbc0c6812953db2",
       "workingTreeChanged": false,
       "suites": [
         {
@@ -445,49 +444,60 @@
           "kind": "unit",
           "tool": "Vitest",
           "files": [
+            "tests/client-api.test.ts",
+            "tests/config-network.test.ts",
+            "tests/navigation-errors.test.ts",
             "tests/rate-limit.test.ts",
+            "tests/scanner-errors.test.ts",
             "tests/server.test.ts",
             "tests/unit.test.ts"
+          ]
+        },
+        {
+          "kind": "component",
+          "tool": "Vitest",
+          "files": [
+            "tests/ui.test.tsx"
           ]
         }
       ],
       "focus": [
-        "Scan et score, protections réseau, frames et stockage",
-        "Paiement confirmé, signatures et doublons Stripe",
-        "PDF, email, avis et limites de requêtes"
+        "Protections réseau, limites de temps, cookies et stockage",
+        "API de paiement et export ; client en streaming",
+        "Interface : rapport, consentement, emails, avis et partage"
       ],
       "coverage": {
         "metrics": {
           "lines": {
             "total": 977,
-            "covered": 894,
-            "pct": 91.5
+            "covered": 940,
+            "pct": 96.2
           },
           "branches": {
             "total": 546,
-            "covered": 374,
-            "pct": 68.5
+            "covered": 465,
+            "pct": 85.2
           },
           "functions": {
             "total": 147,
-            "covered": 126,
-            "pct": 85.7
+            "covered": 139,
+            "pct": 94.6
           },
           "statements": {
             "total": 1354,
-            "covered": 1066,
-            "pct": 78.7
+            "covered": 1261,
+            "pct": 93.1
           }
         },
-        "measuredAt": "2026-10-14T16:42:30.240Z",
-        "scope": "Routes app/api + lib/server : couverture fusionnée Vitest et navigateur c8 ; interface exclue",
-        "revision": "defece5d67ceda8e36f1d5679c999e87be80900a",
+        "measuredAt": "2026-10-14T19:13:18.462Z",
+        "scope": "Routes app/api + lib/server : union Vitest et navigateur c8 ; tests UI/client hors de ce pourcentage",
+        "revision": "4fd463321efe68d97b6c71c83cbc0c6812953db2",
         "reportUrl": "/qa/reports/rgpd-scan-coverage.json"
       },
       "runs": [
         {
-          "total": 40,
-          "passed": 40,
+          "total": 82,
+          "passed": 82,
           "failed": 0,
           "skipped": 0,
           "flaky": 0,
@@ -495,15 +505,15 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 1015.14013671875,
-          "measuredAt": "2026-10-14T16:40:14.568Z",
+          "durationMs": 4838.883544921875,
+          "measuredAt": "2026-10-14T18:57:42.586Z",
           "environments": [],
           "kind": "unit",
           "format": "vitest",
           "dateSource": "report",
-          "sourceUrl": null,
-          "revision": "defece5d67ceda8e36f1d5679c999e87be80900a",
-          "scope": "40 cas métier/API : Prisma, paiement et email simulés ; vraies signatures Stripe",
+          "sourceUrl": "https://github.com/KeepSurfing/RGPD_scan/actions/runs/38620778760/job/116047425396",
+          "revision": "4fd463321efe68d97b6c71c83cbc0c6812953db2",
+          "scope": "82 tests métier, API, configurations, erreurs du scanner et interface du rapport ; fournisseurs simulés",
           "reportUrl": "/qa/reports/rgpd-scan-unit.json"
         },
         {
@@ -516,14 +526,14 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 8358.909233,
-          "measuredAt": "2026-10-14T16:42:29.401Z",
+          "durationMs": 8522.686752,
+          "measuredAt": "2026-10-14T18:59:45.504Z",
           "environments": [],
           "kind": "browser",
           "format": "node-tap",
           "dateSource": "file",
           "sourceUrl": null,
-          "revision": "defece5d67ceda8e36f1d5679c999e87be80900a",
+          "revision": "4fd463321efe68d97b6c71c83cbc0c6812953db2",
           "scope": "Navigation et scan avec Chrome sur un serveur HTTP local ; inclut le test parent Node.js",
           "reportUrl": "/qa/reports/rgpd-scan-browser.json"
         }
@@ -533,9 +543,9 @@
       "repository": "KeepSurfing/ConseillerOrientation",
       "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation",
       "changeUrl": "https://github.com/KeepSurfing/ConseillerOrientation/pull/1",
-      "inspectedAt": "2026-10-14T16:53:27.106Z",
+      "inspectedAt": "2026-10-14T19:13:19.156Z",
       "available": true,
-      "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
+      "revision": "9d8aff170ce0829230a9647adb142ae2ee4e6b29",
       "workingTreeChanged": false,
       "suites": [
         {
@@ -556,6 +566,7 @@
           "tool": "Vitest",
           "files": [
             "src/app/api/analytics/route.test.ts",
+            "src/app/api/metiers/route.test.ts",
             "src/lib/analyticsRetention.test.ts",
             "src/lib/constellationLayout.test.ts",
             "src/lib/favoris.test.ts",
@@ -579,13 +590,15 @@
             "src/lib/sync/romeMetiersClient.test.ts",
             "src/lib/sync/romeMobiliteClient.test.ts",
             "src/lib/sync/runSync.test.ts",
-            "src/lib/sync/unsplashClient.test.ts"
+            "src/lib/sync/unsplashClient.test.ts",
+            "src/proxy.test.ts"
           ]
         },
         {
           "kind": "component",
           "tool": "Vitest",
           "files": [
+            "src/app/pages.test.tsx",
             "src/components/ConstellationCanvas.test.tsx",
             "src/components/FavoriButton.test.tsx",
             "src/components/FavorisClient.test.tsx",
@@ -596,6 +609,7 @@
             "src/components/MetierCard.test.tsx",
             "src/components/MetiersCatalogueClient.test.tsx",
             "src/components/MobileNav.test.tsx",
+            "src/components/Platform.test.tsx",
             "src/components/RiasecMiniQuiz.test.tsx",
             "src/components/SchoolQuizClient.test.tsx",
             "src/components/ShareButton.test.tsx",
@@ -604,42 +618,42 @@
         }
       ],
       "focus": [
-        "Quiz RIASEC, catalogue et composants",
-        "Favoris : erreurs, comparaisons et réponses tardives",
-        "Analytics sans données personnelles ; synchronisation Prisma"
+        "Pages, fiches métiers, articles et métadonnées de partage",
+        "Admin : données de suivi et authentification",
+        "Quiz, favoris, analytics, PWA et synchronisation métier"
       ],
       "coverage": {
         "metrics": {
           "lines": {
-            "total": 1544,
-            "covered": 1128,
-            "pct": 73.1
+            "total": 1545,
+            "covered": 1436,
+            "pct": 92.9
           },
           "branches": {
-            "total": 984,
-            "covered": 622,
-            "pct": 63.2
+            "total": 985,
+            "covered": 793,
+            "pct": 80.5
           },
           "functions": {
             "total": 478,
-            "covered": 339,
-            "pct": 70.9
+            "covered": 459,
+            "pct": 96
           },
           "statements": {
-            "total": 1746,
-            "covered": 1258,
-            "pct": 72.1
+            "total": 1747,
+            "covered": 1592,
+            "pct": 91.1
           }
         },
-        "measuredAt": "2026-10-14T16:20:00.720Z",
+        "measuredAt": "2026-10-14T19:13:18.458Z",
         "scope": "Tout src/**/*.ts(x), hors tests, Prisma généré et connexion src/lib/prisma.ts",
-        "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
+        "revision": "9d8aff170ce0829230a9647adb142ae2ee4e6b29",
         "reportUrl": "/qa/reports/orientation-coverage.json"
       },
       "runs": [
         {
-          "total": 232,
-          "passed": 232,
+          "total": 265,
+          "passed": 265,
           "failed": 0,
           "skipped": 0,
           "flaky": 0,
@@ -647,15 +661,15 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 52449.19140625,
-          "measuredAt": "2026-10-14T16:19:07.746Z",
+          "durationMs": 27835.202392578125,
+          "measuredAt": "2026-10-14T18:55:33.828Z",
           "environments": [],
           "kind": "unit",
           "format": "vitest",
           "dateSource": "report",
-          "sourceUrl": null,
-          "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
-          "scope": "232 tests métier, composants et API ; données et requêtes simulées ; E2E non comptés ici",
+          "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation/actions/runs/38620539429/job/116046606994",
+          "revision": "9d8aff170ce0829230a9647adb142ae2ee4e6b29",
+          "scope": "265 tests métier, pages serveur, composants et API ; données et services simulés",
           "reportUrl": "/qa/reports/orientation-unit.json"
         },
         {
@@ -669,15 +683,15 @@
           "expectedFailures": 0,
           "errors": 0,
           "durationMs": null,
-          "measuredAt": "2026-10-14T16:47:58.0107721Z",
+          "measuredAt": "2026-10-14T19:07:58.1055262Z",
           "environments": [
             "chromium"
           ],
           "kind": "e2e",
           "format": "playwright-summary",
           "dateSource": "report",
-          "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation/actions/runs/38600568920/job/115979387664",
-          "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
+          "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation/actions/runs/38620539681/job/116047366274",
+          "revision": "9d8aff170ce0829230a9647adb142ae2ee4e6b29",
           "scope": "28 parcours Chromium validés en CI ; résumé du job, rapport détaillé non archivé",
           "reportUrl": "/qa/reports/orientation-e2e.json"
         }
@@ -687,9 +701,9 @@
       "repository": "KeepSurfing/CartoRisques",
       "sourceUrl": "https://github.com/KeepSurfing/CartoRisques",
       "changeUrl": "https://github.com/KeepSurfing/CartoRisques/pull/1",
-      "inspectedAt": "2026-10-14T16:53:27.106Z",
+      "inspectedAt": "2026-10-14T19:13:19.156Z",
       "available": true,
-      "revision": "1e5822e934728f988c3996533140665f79ec013b",
+      "revision": "7463b1953cc9f141be62968c9857d2087154794a",
       "workingTreeChanged": false,
       "suites": [
         {
@@ -721,8 +735,11 @@
           "kind": "component",
           "tool": "Vitest",
           "files": [
+            "frontend/src/App.test.tsx",
             "frontend/src/components/AnalysisSearch.test.tsx",
-            "frontend/src/components/LayerRow.test.tsx"
+            "frontend/src/components/Controls.test.tsx",
+            "frontend/src/components/LayerRow.test.tsx",
+            "frontend/src/map/MapView.test.tsx"
           ]
         },
         {
@@ -730,50 +747,53 @@
           "tool": "Vitest",
           "files": [
             "frontend/src/lib/cumulative.test.ts",
+            "frontend/src/lib/static/data-api.test.ts",
             "frontend/src/lib/static/execution.test.ts",
+            "frontend/src/lib/static/protocol.test.ts",
             "frontend/src/lib/static/static.test.ts",
             "frontend/src/lib/urlState.test.ts",
-            "frontend/src/map/layerStyles.test.ts"
+            "frontend/src/map/layerStyles.test.ts",
+            "frontend/src/map/patterns.test.ts"
           ]
         }
       ],
       "focus": [
-        "Analyse statique, cumul et tuiles géographiques",
-        "Recherche, annulations et parcours ordinateur/mobile",
-        "API Python et ETL avec PostGIS isolé en CI"
+        "Carte : couches, cumul, erreurs, sélection et géolocalisation",
+        "Données statiques gzip, cache et protocole de tuiles",
+        "Sources, rapports officiels, accessibilité ; API/ETL PostGIS"
       ],
       "coverage": {
         "metrics": {
           "lines": {
             "total": 2786,
-            "covered": 1815,
-            "pct": 65.1
+            "covered": 2738,
+            "pct": 98.3
           },
           "branches": {
-            "total": 601,
-            "covered": 510,
-            "pct": 84.9
+            "total": 1015,
+            "covered": 946,
+            "pct": 93.2
           },
           "functions": {
-            "total": 144,
-            "covered": 89,
-            "pct": 61.8
+            "total": 163,
+            "covered": 154,
+            "pct": 94.5
           },
           "statements": {
             "total": 2786,
-            "covered": 1815,
-            "pct": 65.1
+            "covered": 2738,
+            "pct": 98.3
           }
         },
-        "measuredAt": "2026-10-14T16:49:49.710Z",
+        "measuredAt": "2026-10-14T19:13:18.461Z",
         "scope": "Tout frontend/src/**/*.ts(x), hors tests et fixtures ; couverture Python non mesurée",
-        "revision": "1e5822e934728f988c3996533140665f79ec013b",
+        "revision": "7463b1953cc9f141be62968c9857d2087154794a",
         "reportUrl": "/qa/reports/carto-risques-coverage.json"
       },
       "runs": [
         {
-          "total": 40,
-          "passed": 40,
+          "total": 68,
+          "passed": 68,
           "failed": 0,
           "skipped": 0,
           "flaky": 0,
@@ -781,15 +801,15 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 5004.7890625,
-          "measuredAt": "2026-10-14T16:49:44.329Z",
+          "durationMs": 8433.37841796875,
+          "measuredAt": "2026-10-14T18:57:54.534Z",
           "environments": [],
           "kind": "unit",
           "format": "vitest",
           "dateSource": "report",
-          "sourceUrl": null,
-          "revision": "1e5822e934728f988c3996533140665f79ec013b",
-          "scope": "40 tests frontend : composants, analyse statique et tuiles ; bibliothèques H3/GeoJSON réelles",
+          "sourceUrl": "https://github.com/KeepSurfing/CartoRisques/actions/runs/38620553439/job/116046655432",
+          "revision": "7463b1953cc9f141be62968c9857d2087154794a",
+          "scope": "68 tests frontend, DOM et carte ; MapLibre seul simulé dans ses tests de composant",
           "reportUrl": "/qa/reports/carto-risques-unit.json"
         },
         {
@@ -802,17 +822,17 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 15408.153,
-          "measuredAt": "2026-10-14T16:23:56.719Z",
+          "durationMs": 29366.755999999998,
+          "measuredAt": "2026-10-14T19:05:09.928Z",
           "environments": [
             "desktop",
             "mobile"
           ],
           "kind": "e2e",
-          "format": "playwright",
+          "format": "playwright-summary",
           "dateSource": "report",
-          "sourceUrl": null,
-          "revision": "1e5822e934728f988c3996533140665f79ec013b",
+          "sourceUrl": "https://github.com/KeepSurfing/CartoRisques/actions/runs/38620553439/job/116046655432",
+          "revision": "7463b1953cc9f141be62968c9857d2087154794a",
           "scope": "11 parcours frontend ordinateur/mobile ; réponses API simulées",
           "reportUrl": "/qa/reports/carto-risques-e2e.json"
         },
@@ -826,14 +846,14 @@
           "todo": 0,
           "expectedFailures": 0,
           "errors": 0,
-          "durationMs": 4762.503385543823,
-          "measuredAt": "2026-10-14T16:44:51.557Z",
+          "durationMs": 5302.67333984375,
+          "measuredAt": "2026-10-14T19:05:17.133Z",
           "environments": [],
           "kind": "integration",
           "format": "pytest-json",
           "dateSource": "report",
-          "sourceUrl": null,
-          "revision": "1e5822e934728f988c3996533140665f79ec013b",
+          "sourceUrl": "https://github.com/KeepSurfing/CartoRisques/actions/runs/38620553439/job/116046654848",
+          "revision": "7463b1953cc9f141be62968c9857d2087154794a",
           "scope": "121 tests backend/ETL exécutés en CI avec deux bases PostGIS isolées ; aucun ignoré",
           "reportUrl": "/qa/reports/carto-risques-integration.json"
         }

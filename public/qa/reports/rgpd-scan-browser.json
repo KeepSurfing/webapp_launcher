@@ -9,14 +9,14 @@
   "todo": 0,
   "expectedFailures": 0,
   "errors": 0,
-  "durationMs": 8358.909233,
-  "measuredAt": "2026-10-14T16:42:29.401Z",
+  "durationMs": 8522.686752,
+  "measuredAt": "2026-10-14T18:59:45.504Z",
   "environments": [],
   "kind": "browser",
   "format": "node-tap",
   "dateSource": "file",
   "sourceUrl": null,
-  "revision": "defece5d67ceda8e36f1d5679c999e87be80900a",
+  "revision": "4fd463321efe68d97b6c71c83cbc0c6812953db2",
   "scope": "Navigation et scan avec Chrome sur un serveur HTTP local ; inclut le test parent Node.js",
   "reportUrl": "/qa/reports/rgpd-scan-browser.json"
 }

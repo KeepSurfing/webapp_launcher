@@ -10,15 +10,15 @@
   "expectedFailures": 0,
   "errors": 0,
   "durationMs": null,
-  "measuredAt": "2026-10-14T16:47:58.0107721Z",
+  "measuredAt": "2026-10-14T19:07:58.1055262Z",
   "environments": [
     "chromium"
   ],
   "kind": "e2e",
   "format": "playwright-summary",
   "dateSource": "report",
-  "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation/actions/runs/38600568920/job/115979387664",
-  "revision": "fd3a672780fe6cff359e78f0c773b22e599bbcd3",
+  "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation/actions/runs/38620539681/job/116047366274",
+  "revision": "9d8aff170ce0829230a9647adb142ae2ee4e6b29",
   "scope": "28 parcours Chromium validés en CI ; résumé du job, rapport détaillé non archivé",
   "reportUrl": "/qa/reports/orientation-e2e.json"
 }

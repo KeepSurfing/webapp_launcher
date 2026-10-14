@@ -87,15 +87,23 @@ Le libellé « Couverture du code » désigne la proportion pondérée des ligne
 | PetSitter | 11 | 100 % : logique et composants | PR 1 |
 | Toit Rénov’ | 24 | 100 % : JavaScript applicatif | PR 1 |
 | Bordeaux Bouge | 75 | 100 % : métier, API et UI | PR 1 |
-| KeepSurfing | 26 | 96,5 % : toutes les routes API | PR 2 |
-| RGPD Scan | 51 | 91,5 % : toutes les routes API et lib/server | main |
-| Orientation | 260 | 73,1 % : src, hors adaptateur et Prisma généré | PR 1 |
-| CartoRisques | 172 | 65,1 % : frontend, Python exclu | PR 1 |
+| KeepSurfing | 53 | 99,7 % : toutes les routes API | PR 2 |
+| RGPD Scan | 93 | 96,2 % : toutes les routes API et lib/server | main |
+| Orientation | 293 | 92,9 % : src, hors adaptateur et Prisma généré | PR 1 |
+| CartoRisques | 200 | 98,3 % : frontend, Python exclu | PR 1 |
 
 Les cas précédemment identifiés ont été ajoutés : API du portfolio, favoris/analytics/repository Prisma, checkout/webhook/PDF/email, analyse statique/tuiles/recherche. CartoRisques exécute 121 tests Python avec PostGIS isolé en CI, dont les 43 ignorés en local. Les trois premiers projets restent à 100 % sur leur périmètre ; les autres rapports incluent aussi les fichiers non couverts, sans réduire artificiellement leur périmètre.
 
 La couverture de RGPD Scan fusionne les résultats unitaires Vitest et navigateur c8 par fichier source, via Istanbul. Les onze tests navigateur incluent le test parent Node.js. La mesure exclut l’interface et ne garantit aucune conformité juridique.
 
-Le portfolio exécute deux scénarios fonctionnels sur deux tailles d’écran (quatre exécutions), sans ses comparaisons visuelles dont les références sont absentes. Les 28 E2E Chromium d’Orientation passent en CI. Leur résumé de comptage est importé depuis le job GitHub lié ; le rapport détaillé n’est pas archivé.
+Le portfolio exécute six scénarios sur deux tailles d’écran (douze exécutions), dont huit comparaisons aux références PNG Chromium Linux versionnées. Heure fixe et services externes bloqués assurent leur reproductibilité. Les quatre anciennes exécutions fonctionnelles sont remplacées par cette suite complète, sans double comptage. Les 28 E2E Chromium d’Orientation passent en CI. Leur résumé de comptage est importé depuis le job GitHub lié ; le rapport détaillé n’est pas archivé.
 
-Les versions en revue sont liées dans chaque volet. Les recommandations restantes correspondent aux fichiers et rapports inspectés : pages d’Orientation, carte et protocole statique de CartoRisques, branches du scanner/configurations de RGPD Scan et cas limites/visuels du portfolio. Un changement de commit invalide ces recommandations précises. Les tests, la compilation et les contrôles CI passent sur les quatre versions complétées.
+Les versions en revue sont liées dans chaque volet. Ces zones identifiées sont maintenant exercées. Les fiches signalent les périmètres dont la couverture reste partielle, distinctement de la présence de suites de tests. Un changement de commit invalide ces recommandations précises. Les tests, la compilation et les contrôles CI passent sur les quatre versions complétées.
+
+## Complétion des zones identifiées
+
+122 nouveaux tests Vitest ont été ajoutés aux quatre projets. Les suites existantes ont aussi été exécutées intégralement, avec 12 contrôles visuels/fonctionnels du portfolio, 28 E2E d’Orientation, 11 E2E CartoRisques, 11 tests navigateur RGPD et 121 tests PostGIS.
+
+Les pages, fiches métiers, métadonnées, images de partage, robots/sitemap, administration et authentification d’Orientation sont testés. Un en-tête Basic invalide ne fait plus planter /admin. CartoRisques teste MapView, le protocole statique, cache/gzip, sources, géolocalisation, partage, focus clavier et rapport officiel ; MapView, les données/API et le protocole statique atteignent 100 % des lignes dans leurs fichiers. RGPD Scan couvre configurations, protections DNS, erreurs de navigation, frames, capture et budget de temps, interface du rapport et API client en streaming. La couverture RGPD conserve son périmètre serveur ; les tests de l’interface sont comptés séparément dans l’inventaire.
+
+Les pourcentages partiels restent visibles : ils ne sont pas arrondis artificiellement à 100 %. Le fallback défensif de countScore du portfolio est notamment sans entrée atteignable depuis des longueurs de tableaux positives. Les périmètres et versions sont documentés dans les rapports liés ; les quatre CI et leurs compilations passent.
