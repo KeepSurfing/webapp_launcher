@@ -1,0 +1,65 @@
+{
+  "projects": [
+    {
+      "id": "petsitter",
+      "repository": "KeepSurfing/petsitter",
+      "path": "work/qa-sources/petsitter",
+      "focus": []
+    },
+    {
+      "id": "toit-renov",
+      "repository": "KeepSurfing/toit-renov",
+      "path": "../Maquettes/Couvreur_toit-reno",
+      "focus": []
+    },
+    {
+      "id": "bordeaux-bouge",
+      "repository": "KeepSurfing/bdx-agenda",
+      "path": "../bdx-agenda",
+      "focus": []
+    },
+    {
+      "id": "keepsurfing",
+      "repository": "KeepSurfing/Portfolio",
+      "path": "../Portfolio/Portfolio",
+      "focus": [
+        "Rendu visuel sur ordinateur et mobile",
+        "Navigation et changement de thème",
+        "Réservation et état de la grille des dépôts"
+      ]
+    },
+    {
+      "id": "rgpd-scan",
+      "repository": "KeepSurfing/RGPD_scan",
+      "path": "../RGPD_scan",
+      "focus": [
+        "Classification des cookies et calcul de l’indice",
+        "Protection réseau et adresses privées",
+        "Navigation, redirections et stockage des frames",
+        "Rapports partiels et protection des détails payants"
+      ]
+    },
+    {
+      "id": "orientation",
+      "repository": "KeepSurfing/ConseillerOrientation",
+      "path": "work/qa-sources/orientation",
+      "focus": [
+        "Scores RIASEC et correspondance avec les métiers",
+        "Quiz, favoris et composants interactifs",
+        "Navigation mobile et parcours du catalogue",
+        "Synchronisation des sources métiers"
+      ]
+    },
+    {
+      "id": "carto-risques",
+      "repository": "KeepSurfing/CartoRisques",
+      "path": "work/qa-sources/carto-risques",
+      "focus": [
+        "Analyse d’un lieu et cumul des risques",
+        "Disponibilité et fraîcheur des sources",
+        "Interface cartographique et parcours navigateur",
+        "API et chaîne d’import des données géographiques"
+      ]
+    }
+  ]
+}

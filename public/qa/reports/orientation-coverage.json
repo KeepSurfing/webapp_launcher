@@ -1,0 +1,29 @@
+{
+  "project": "orientation",
+  "metrics": {
+    "lines": {
+      "total": 1539,
+      "covered": 1065,
+      "pct": 69.2
+    },
+    "branches": {
+      "total": 976,
+      "covered": 577,
+      "pct": 59.1
+    },
+    "functions": {
+      "total": 477,
+      "covered": 319,
+      "pct": 66.9
+    },
+    "statements": {
+      "total": 1735,
+      "covered": 1186,
+      "pct": 68.4
+    }
+  },
+  "measuredAt": "2026-10-14T13:37:15.575Z",
+  "scope": "src/**/*.{ts,tsx}, hors tests et src/lib/prisma.ts non instrumenté",
+  "revision": "fb80d93e71a44ae2e9ef5c602d49c7ffe7a02a99",
+  "reportUrl": "/qa/reports/orientation-coverage.json"
+}

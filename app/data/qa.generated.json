@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "collectedAt": "2026-10-14T13:38:40.464Z",
+  "projects": {
+    "petsitter": {
+      "repository": "KeepSurfing/petsitter",
+      "sourceUrl": "https://github.com/KeepSurfing/petsitter",
+      "inspectedAt": "2026-10-14T13:38:40.464Z",
+      "available": true,
+      "revision": "c545b10dd31861fb28ebc654c707a0b766b16ea3",
+      "workingTreeChanged": false,
+      "suites": [],
+      "focus": [],
+      "coverage": null,
+      "runs": []
+    },
+    "toit-renov": {
+      "repository": "KeepSurfing/toit-renov",
+      "sourceUrl": "https://github.com/KeepSurfing/toit-renov",
+      "inspectedAt": "2026-10-14T13:38:40.464Z",
+      "available": true,
+      "revision": "ceaafe00f9c9ab0b571e144482fabae060d81592",
+      "workingTreeChanged": false,
+      "suites": [],
+      "focus": [],
+      "coverage": null,
+      "runs": []
+    },
+    "bordeaux-bouge": {
+      "repository": "KeepSurfing/bdx-agenda",
+      "sourceUrl": "https://github.com/KeepSurfing/bdx-agenda",
+      "inspectedAt": "2026-10-14T13:38:40.464Z",
+      "available": true,
+      "revision": "68d1dd76309bf506d892e476c4a6ffe055c041dc",
+      "workingTreeChanged": false,
+      "suites": [],
+      "focus": [],
+      "coverage": null,
+      "runs": []
+    },
+    "keepsurfing": {
+      "repository": "KeepSurfing/Portfolio",
+      "sourceUrl": "https://github.com/KeepSurfing/Portfolio",
+      "inspectedAt": "2026-10-14T13:38:40.464Z",
+      "available": true,
+      "revision": "6409602190b12fb7d62b5161f3c9932dc8fb6454",
+      "workingTreeChanged": false,
+      "suites": [
+        {
+          "kind": "visual",
+          "tool": "Playwright",
+          "files": [
+            "tests/visual.spec.js"
+          ]
+        }
+      ],
+      "focus": [
+        "Rendu visuel sur ordinateur et mobile",
+        "Navigation et changement de thème",
+        "Réservation et état de la grille des dépôts"
+      ],
+      "coverage": null,
+      "runs": []
+    },
+    "rgpd-scan": {
+      "repository": "KeepSurfing/RGPD_scan",
+      "sourceUrl": "https://github.com/KeepSurfing/RGPD_scan",
+      "inspectedAt": "2026-10-14T13:38:40.464Z",
+      "available": true,
+      "revision": "cd331e11fe77f58d81ce21ad046e7ba55c8bd987",
+      "workingTreeChanged": true,
+      "suites": [
+        {
+          "kind": "browser",
+          "tool": "Node.js + Playwright",
+          "files": [
+            "tests/browser.test.ts"
+          ]
+        },
+        {
+          "kind": "unit",
+          "tool": "Node.js",
+          "files": [
+            "tests/unit.test.ts"
+          ]
+        }
+      ],
+      "focus": [
+        "Classification des cookies et calcul de l’indice",
+        "Protection réseau et adresses privées",
+        "Navigation, redirections et stockage des frames",
+        "Rapports partiels et protection des détails payants"
+      ],
+      "coverage": null,
+      "runs": [
+        {
+          "total": 14,
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "cancelled": 0,
+          "todo": 0,
+          "expectedFailures": 0,
+          "errors": 0,
+          "durationMs": 562.850935,
+          "measuredAt": "2026-10-14T13:31:06.722Z",
+          "environments": [],
+          "kind": "unit",
+          "format": "node-tap",
+          "dateSource": "file",
+          "revision": "cd331e11fe77f58d81ce21ad046e7ba55c8bd987",
+          "scope": "14 tests unitaires recompilés depuis les sources ; navigateur non exécuté",
+          "reportUrl": "/qa/reports/rgpd-scan-unit.json"
+        }
+      ]
+    },
+    "orientation": {
+      "repository": "KeepSurfing/ConseillerOrientation",
+      "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation",
+      "inspectedAt": "2026-10-14T13:38:40.464Z",
+      "available": true,
+      "revision": "fb80d93e71a44ae2e9ef5c602d49c7ffe7a02a99",
+      "workingTreeChanged": true,
+      "suites": [
+        {
+          "kind": "e2e",
+          "tool": "Playwright",
+          "files": [
+            "e2e/accueil.spec.ts",
+            "e2e/articles.spec.ts",
+            "e2e/favoris.spec.ts",
+            "e2e/metiers.spec.ts",
+            "e2e/navigation-mobile.spec.ts",
+            "e2e/quiz-image.spec.ts",
+            "e2e/quiz-scolaire.spec.ts"
+          ]
+        },
+        {
+          "kind": "component",
+          "tool": "Vitest",
+          "files": [
+            "src/components/ConstellationCanvas.test.tsx",
+            "src/components/FavoriButton.test.tsx",
+            "src/components/HandDrawnHighlight.test.tsx",
+            "src/components/HeroTitle.test.tsx",
+            "src/components/ImageQuizClient.test.tsx",
+            "src/components/InertiaCarousel.test.tsx",
+            "src/components/MetierCard.test.tsx",
+            "src/components/MetiersCatalogueClient.test.tsx",
+            "src/components/MobileNav.test.tsx",
+            "src/components/RiasecMiniQuiz.test.tsx",
+            "src/components/SchoolQuizClient.test.tsx",
+            "src/components/ShareButton.test.tsx",
+            "src/components/ThemeToggle.test.tsx"
+          ]
+        },
+        {
+          "kind": "unit",
+          "tool": "Vitest",
+          "files": [
+            "src/lib/analyticsRetention.test.ts",
+            "src/lib/constellationLayout.test.ts",
+            "src/lib/favoris.test.ts",
+            "src/lib/matching.test.ts",
+            "src/lib/niveauEtudes.test.ts",
+            "src/lib/pourToiSi.test.ts",
+            "src/lib/profileQuery.test.ts",
+            "src/lib/riasec.test.ts",
+            "src/lib/riasecRadar.test.ts",
+            "src/lib/shuffle.test.ts",
+            "src/lib/sync/apprentissageClient.test.ts",
+            "src/lib/sync/dataEmploiClient.test.ts",
+            "src/lib/sync/franceTravailStatsClient.test.ts",
+            "src/lib/sync/inseeClient.test.ts",
+            "src/lib/sync/journeeTypeFallback.test.ts",
+            "src/lib/sync/onisepFichesClient.test.ts",
+            "src/lib/sync/photoKeyword.test.ts",
+            "src/lib/sync/romeCatalogueMapping.test.ts",
+            "src/lib/sync/romeFichesClient.test.ts",
+            "src/lib/sync/romeMetiersClient.test.ts",
+            "src/lib/sync/romeMobiliteClient.test.ts",
+            "src/lib/sync/runSync.test.ts",
+            "src/lib/sync/unsplashClient.test.ts"
+          ]
+        }
+      ],
+      "focus": [
+        "Scores RIASEC et correspondance avec les métiers",
+        "Quiz, favoris et composants interactifs",
+        "Navigation mobile et parcours du catalogue",
+        "Synchronisation des sources métiers"
+      ],
+      "coverage": {
+        "metrics": {
+          "lines": {
+            "total": 1539,
+            "covered": 1065,
+            "pct": 69.2
+          },
+          "branches": {
+            "total": 976,
+            "covered": 577,
+            "pct": 59.1
+          },
+          "functions": {
+            "total": 477,
+            "covered": 319,
+            "pct": 66.9
+          },
+          "statements": {
+            "total": 1735,
+            "covered": 1186,
+            "pct": 68.4
+          }
+        },
+        "measuredAt": "2026-10-14T13:37:15.575Z",
+        "scope": "src/**/*.{ts,tsx}, hors tests et src/lib/prisma.ts non instrumenté",
+        "revision": "fb80d93e71a44ae2e9ef5c602d49c7ffe7a02a99",
+        "reportUrl": "/qa/reports/orientation-coverage.json"
+      },
+      "runs": [
+        {
+          "total": 215,
+          "passed": 215,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "cancelled": 0,
+          "todo": 0,
+          "expectedFailures": 0,
+          "errors": 0,
+          "durationMs": 77708.20483398438,
+          "measuredAt": "2026-10-14T13:35:57.250Z",
+          "environments": [],
+          "kind": "unit",
+          "format": "vitest",
+          "dateSource": "report",
+          "revision": "fb80d93e71a44ae2e9ef5c602d49c7ffe7a02a99",
+          "scope": "Suite Vitest : logique métier et composants ; E2E non exécutés",
+          "reportUrl": "/qa/reports/orientation-unit.json"
+        }
+      ]
+    },
+    "carto-risques": {
+      "repository": "KeepSurfing/CartoRisques",
+      "sourceUrl": "https://github.com/KeepSurfing/CartoRisques",
+      "inspectedAt": "2026-10-14T13:38:40.464Z",
+      "available": true,
+      "revision": "32892d1794884aff335f379b84bead378796f478",
+      "workingTreeChanged": true,
+      "suites": [
+        {
+          "kind": "integration",
+          "tool": "pytest",
+          "files": [
+            "backend/tests/test_api.py",
+            "backend/tests/test_cumulative.py",
+            "backend/tests/test_properties.py"
+          ]
+        },
+        {
+          "kind": "unit",
+          "tool": "pytest",
+          "files": [
+            "etl/tests/test_acquire.py",
+            "etl/tests/test_pipeline.py",
+            "etl/tests/test_transform.py"
+          ]
+        },
+        {
+          "kind": "e2e",
+          "tool": "Playwright",
+          "files": [
+            "frontend/e2e/app.spec.ts"
+          ]
+        },
+        {
+          "kind": "component",
+          "tool": "Vitest",
+          "files": [
+            "frontend/src/components/LayerRow.test.tsx"
+          ]
+        },
+        {
+          "kind": "unit",
+          "tool": "Vitest",
+          "files": [
+            "frontend/src/lib/cumulative.test.ts",
+            "frontend/src/lib/static/static.test.ts",
+            "frontend/src/lib/urlState.test.ts",
+            "frontend/src/map/layerStyles.test.ts"
+          ]
+        }
+      ],
+      "focus": [
+        "Analyse d’un lieu et cumul des risques",
+        "Disponibilité et fraîcheur des sources",
+        "Interface cartographique et parcours navigateur",
+        "API et chaîne d’import des données géographiques"
+      ],
+      "coverage": {
+        "metrics": {
+          "lines": {
+            "total": 2784,
+            "covered": 1256,
+            "pct": 45.1
+          },
+          "branches": {
+            "total": 356,
+            "covered": 264,
+            "pct": 74.2
+          },
+          "functions": {
+            "total": 136,
+            "covered": 56,
+            "pct": 41.2
+          },
+          "statements": {
+            "total": 2784,
+            "covered": 1256,
+            "pct": 45.1
+          }
+        },
+        "measuredAt": "2026-10-14T13:35:08.643Z",
+        "scope": "Frontend src/**/*.{ts,tsx}, hors tests et fixtures ; API et ETL exclus",
+        "revision": "32892d1794884aff335f379b84bead378796f478",
+        "reportUrl": "/qa/reports/carto-risques-coverage.json"
+      },
+      "runs": [
+        {
+          "total": 26,
+          "passed": 26,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "cancelled": 0,
+          "todo": 0,
+          "expectedFailures": 0,
+          "errors": 0,
+          "durationMs": 10609.776123046875,
+          "measuredAt": "2026-10-14T13:34:57.621Z",
+          "environments": [],
+          "kind": "unit",
+          "format": "vitest",
+          "dateSource": "report",
+          "revision": "32892d1794884aff335f379b84bead378796f478",
+          "scope": "Suite Vitest frontend ; tests Python API/ETL non exécutés",
+          "reportUrl": "/qa/reports/carto-risques-unit.json"
+        },
+        {
+          "total": 11,
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "cancelled": 0,
+          "todo": 0,
+          "expectedFailures": 0,
+          "errors": 0,
+          "durationMs": 18370.335,
+          "measuredAt": "2026-10-14T13:35:12.540Z",
+          "environments": [
+            "desktop",
+            "mobile"
+          ],
+          "kind": "e2e",
+          "format": "playwright",
+          "dateSource": "report",
+          "revision": "32892d1794884aff335f379b84bead378796f478",
+          "scope": "Parcours frontend sur Chrome, ordinateur et mobile ; API simulées",
+          "reportUrl": "/qa/reports/carto-risques-e2e.json"
+        }
+      ]
+    }
+  }
+}

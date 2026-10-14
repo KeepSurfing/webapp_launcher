@@ -1,0 +1,21 @@
+{
+  "project": "carto-risques",
+  "total": 26,
+  "passed": 26,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 10609.776123046875,
+  "measuredAt": "2026-10-14T13:34:57.621Z",
+  "environments": [],
+  "kind": "unit",
+  "format": "vitest",
+  "dateSource": "report",
+  "revision": "32892d1794884aff335f379b84bead378796f478",
+  "scope": "Suite Vitest frontend ; tests Python API/ETL non exécutés",
+  "reportUrl": "/qa/reports/carto-risques-unit.json"
+}

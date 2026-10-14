@@ -1,0 +1,21 @@
+{
+  "project": "rgpd-scan",
+  "total": 14,
+  "passed": 14,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 562.850935,
+  "measuredAt": "2026-10-14T13:31:06.722Z",
+  "environments": [],
+  "kind": "unit",
+  "format": "node-tap",
+  "dateSource": "file",
+  "revision": "cd331e11fe77f58d81ce21ad046e7ba55c8bd987",
+  "scope": "14 tests unitaires recompilés depuis les sources ; navigateur non exécuté",
+  "reportUrl": "/qa/reports/rgpd-scan-unit.json"
+}

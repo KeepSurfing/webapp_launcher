@@ -124,3 +124,11 @@ The portable build runs Vinext directly without a host `timeout` command. The ma
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## Portfolio QA du launcher
+
+Le dashboard QA et les volets de détail s’appuient sur un instantané de métriques vérifiables. Voir [la documentation QA](docs/qa-dashboard.md) pour actualiser les sources et importer les rapports.
+
+- `npm run qa:collect` : actualiser le relevé des sources et rapports locaux.
+- `npm run qa:collect -- --github` : récupérer les sources depuis GitHub (accès en lecture requis pour les dépôts privés).
+- `npm run test:qa` : vérifier les lecteurs de rapports et les calculs du dashboard.

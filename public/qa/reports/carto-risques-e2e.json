@@ -1,0 +1,24 @@
+{
+  "project": "carto-risques",
+  "total": 11,
+  "passed": 11,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 18370.335,
+  "measuredAt": "2026-10-14T13:35:12.540Z",
+  "environments": [
+    "desktop",
+    "mobile"
+  ],
+  "kind": "e2e",
+  "format": "playwright",
+  "dateSource": "report",
+  "revision": "32892d1794884aff335f379b84bead378796f478",
+  "scope": "Parcours frontend sur Chrome, ordinateur et mobile ; API simulées",
+  "reportUrl": "/qa/reports/carto-risques-e2e.json"
+}
