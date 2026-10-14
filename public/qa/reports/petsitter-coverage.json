@@ -1,0 +1,29 @@
+{
+  "project": "petsitter",
+  "metrics": {
+    "lines": {
+      "total": 118,
+      "covered": 118,
+      "pct": 100
+    },
+    "branches": {
+      "total": 59,
+      "covered": 59,
+      "pct": 100
+    },
+    "functions": {
+      "total": 58,
+      "covered": 58,
+      "pct": 100
+    },
+    "statements": {
+      "total": 123,
+      "covered": 123,
+      "pct": 100
+    }
+  },
+  "measuredAt": "2026-10-14T15:37:43.043Z",
+  "scope": "Tout le code applicatif TS/TSX ; quatre métriques à 100 %. Branche QA en revue.",
+  "revision": "01dfceaf4af8ae885a79ad6c609bf53b1265716d",
+  "reportUrl": "/qa/reports/petsitter-coverage.json"
+}

@@ -1,0 +1,21 @@
+{
+  "project": "toit-renov",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 4134.309,
+  "measuredAt": "2026-10-14T15:32:34.224Z",
+  "environments": [],
+  "kind": "e2e",
+  "format": "playwright",
+  "dateSource": "report",
+  "revision": "b6a81bf57f8ea4d7f3ac62e1a2b36e689ef2f078",
+  "scope": "Chrome mobile · site local et formulaires de démonstration · branche QA",
+  "reportUrl": "/qa/reports/toit-renov-e2e.json"
+}

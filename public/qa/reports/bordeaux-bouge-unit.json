@@ -1,0 +1,21 @@
+{
+  "project": "bordeaux-bouge",
+  "total": 73,
+  "passed": 73,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 32404.546142578125,
+  "measuredAt": "2026-10-14T15:32:55.058Z",
+  "environments": [],
+  "kind": "unit",
+  "format": "vitest",
+  "dateSource": "report",
+  "revision": "e3e2714c45a085449ea497d4f94cef552ffa2341",
+  "scope": "Suite de logique et composants sur la branche QA ; services externes simulés",
+  "reportUrl": "/qa/reports/bordeaux-bouge-unit.json"
+}

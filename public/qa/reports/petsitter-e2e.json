@@ -1,0 +1,21 @@
+{
+  "project": "petsitter",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 8265.557999999999,
+  "measuredAt": "2026-10-14T15:37:28.675Z",
+  "environments": [],
+  "kind": "e2e",
+  "format": "playwright",
+  "dateSource": "report",
+  "revision": "01dfceaf4af8ae885a79ad6c609bf53b1265716d",
+  "scope": "Chrome mobile · site local et formulaires de démonstration · branche QA",
+  "reportUrl": "/qa/reports/petsitter-e2e.json"
+}

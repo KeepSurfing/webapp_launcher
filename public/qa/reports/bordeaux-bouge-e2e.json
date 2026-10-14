@@ -1,0 +1,21 @@
+{
+  "project": "bordeaux-bouge",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 6611.796,
+  "measuredAt": "2026-10-14T15:32:46.796Z",
+  "environments": [],
+  "kind": "e2e",
+  "format": "playwright",
+  "dateSource": "report",
+  "revision": "e3e2714c45a085449ea497d4f94cef552ffa2341",
+  "scope": "Chrome mobile · composants réels, événements et API de test isolés · branche QA",
+  "reportUrl": "/qa/reports/bordeaux-bouge-e2e.json"
+}

@@ -4,19 +4,32 @@
       "id": "petsitter",
       "repository": "KeepSurfing/petsitter",
       "path": "work/qa-sources/petsitter",
-      "focus": []
+      "focus": [
+        "Contact : validation et simulation d’envoi",
+        "Navigation mobile, FAQ et pages légales"
+      ],
+      "changeUrl": "https://github.com/KeepSurfing/petsitter/pull/1"
     },
     {
       "id": "toit-renov",
       "repository": "KeepSurfing/toit-renov",
-      "path": "../Maquettes/Couvreur_toit-reno",
-      "focus": []
+      "path": "work/qa-sources/toit-renov",
+      "focus": [
+        "Devis, thèmes et navigation mobile",
+        "Galerie, lightbox et comparaison avant/après"
+      ],
+      "changeUrl": "https://github.com/KeepSurfing/toit-renov/pull/1"
     },
     {
       "id": "bordeaux-bouge",
       "repository": "KeepSurfing/bdx-agenda",
-      "path": "../bdx-agenda",
-      "focus": []
+      "path": "work/qa-sources/bordeaux-bouge",
+      "focus": [
+        "Collecteurs, dates, géographie et exports ICS/RSS",
+        "Pages, routes API, newsletter et erreurs des services",
+        "Filtres, favoris, carte et inscription"
+      ],
+      "changeUrl": "https://github.com/KeepSurfing/bdx-agenda/pull/1"
     },
     {
       "id": "keepsurfing",

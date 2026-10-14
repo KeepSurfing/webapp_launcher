@@ -55,8 +55,8 @@ export function QADashboard({ sites, onOpen }: Props) {
           <button key={value} className={filter === value ? "active" : ""} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label}<span>{count}</span></button>)}
       </div>
     </div>
-    <div className={"qa-action-panels " + (filter !== "all" ? "qa-action-single" : "")}>
-      {groups.filter(group => filter === "all" || filter === group.kind).map(group => <section className={"qa-action-panel qa-action-" + group.kind} key={group.kind} aria-label={group.title}>
+    <div className={"qa-action-panels " + (filter !== "all" || !counts.add || !counts.complete ? "qa-action-single" : "")}>
+      {groups.filter(group => filter === group.kind || (filter === "all" && counts[group.kind] > 0)).map(group => <section className={"qa-action-panel qa-action-" + group.kind} key={group.kind} aria-label={group.title}>
         <div className="qa-action-heading"><span className="qa-action-symbol"><group.icon size={20} /></span><div><h4>{group.title}</h4><p>{group.subtitle}</p></div><strong>{counts[group.kind].toString().padStart(2, "0")}</strong></div>
         <div className="qa-project-list">{projectsFor(group.kind).map(site => {
           const qa = qaData.projects[site.id], action = getQAAction(qa, site.id), result = summarizeQA([qa]);
@@ -70,7 +70,7 @@ export function QADashboard({ sites, onOpen }: Props) {
         {counts[group.kind] === 0 && <p className="qa-empty">Aucun projet dans cette catégorie.</p>}
       </section>)}
     </div>
-    {other.length > 0 && <div className="qa-other">{other.map(site => <button key={site.id} onClick={event => onOpen(site, event.currentTarget)}>{site.name} · {getQAAction(qaData.projects[site.id], site.id).label}<ArrowUpRight size={14} /></button>)}</div>}
+    {other.length > 0 && <div className="qa-other">{other.map(site => <button key={site.id} onClick={event => onOpen(site, event.currentTarget)}>{site.name}<b>{formatPercent(qaData.projects[site.id].coverage?.metrics.lines?.pct ?? null)}</b>{qaData.projects[site.id].changeUrl ? "en revue" : getQAAction(qaData.projects[site.id], site.id).label}<ArrowUpRight size={14} /></button>)}</div>}
     <details className="qa-method"><summary>Sources & méthode</summary><p>{summary.executed} tests exécutés sur {summary.reportProjects} projets. Couverture pondérée sur {summary.coverageProjects} projets uniquement. Les rapports absents restent non mesurés.</p><p>Les priorités correspondent aux sources inspectées : absence de suite, code non couvert par les tests unitaires, ou parcours sans tests identifiés. Les mesures et les exécutions manquantes sont distinguées des tests à écrire dans les fiches.</p></details>
   </section>;
 }

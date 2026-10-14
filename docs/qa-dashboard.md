@@ -82,15 +82,15 @@ Références : [Reporters Playwright](https://playwright.dev/docs/test-reporters
 
 | Projet | Action | Périmètre à traiter |
 |---|---|---|
-| PetSitter | Ajouter | Validation du contact, navigation mobile et clavier |
-| Toit Rénov’ | Ajouter | Préremplissage et validation du devis, liens de contact |
-| Bordeaux Bouge | Ajouter | Filtres, dates, export ICS, recherche et newsletter |
+| PetSitter | 100 % mesuré | 9 tests de logique/composants + 2 parcours Chrome mobile |
+| Toit Rénov’ | 100 % mesuré | 22 tests de logique/DOM + 2 parcours Chrome mobile |
+| Bordeaux Bouge | 100 % mesuré | 73 tests métier/API/UI + 2 parcours Chrome mobile avec fixtures |
 | CartoRisques | Compléter | Cas limites de l’analyse statique et des tuiles ; composants d’analyse et recherche |
 | Conseiller d’orientation | Compléter | FavorisClient, API analytics et repository Prisma |
 | RGPD Scan | Compléter | Checkout, webhook, export PDF et envoi du rapport |
 | KeepSurfing | Compléter | API GitHub, délais et erreurs réseau |
 
-Les trois premiers projets n’ont aucune suite identifiée dans les sources inspectées. Les priorités de CartoRisques et du Conseiller d’orientation proviennent notamment des rapports de couverture **unitaires** : les zones citées peuvent déjà être traversées par des E2E. Pour RGPD Scan et KeepSurfing, les suites inspectées ne testent pas les routes API citées.
+Les trois premiers projets disposent maintenant de suites ajoutées sur les branches `codex/qa-coverage`, publiées dans leurs PR GitHub. Les mesures affichées portent sur ces commits en revue, avec 100 % pour les lignes, instructions, fonctions et branches. Les services de Bordeaux Bouge sont simulés ; sa suite navigateur utilise des événements et réponses API de test. Les rapports ne prétendent pas vérifier les fournisseurs en production. Les priorités de CartoRisques et du Conseiller d’orientation proviennent notamment des rapports de couverture **unitaires** : les zones citées peuvent déjà être traversées par des E2E. Pour RGPD Scan et KeepSurfing, les suites inspectées ne testent pas les routes API citées.
 
 Les fiches distinguent les tests à écrire des actions de mesure et d’exécution. RGPD Scan nécessite un rapport de couverture et l’exécution de sa suite navigateur ; KeepSurfing, le relevé de sa suite visuelle ; CartoRisques, les résultats Python API/ETL ; le Conseiller d’orientation, ses résultats E2E. L’absence de ces rapports n’est pas une preuve d’absence de tests.
 

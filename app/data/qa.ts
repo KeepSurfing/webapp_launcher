@@ -13,7 +13,7 @@ export type TestRun = {
   revision: string | null; scope: string; reportUrl: string;
 };
 export type ProjectQA = {
-  repository: string; sourceUrl: string; inspectedAt: string; available: boolean;
+  repository: string; sourceUrl: string; changeUrl?: string | null; inspectedAt: string; available: boolean;
   revision: string | null; workingTreeChanged: boolean | null;
   suites: { kind: TestKind; tool: string; files: string[] }[]; focus: string[];
   coverage: { metrics: Record<"lines" | "branches" | "functions" | "statements", CoverageMetric | null>;

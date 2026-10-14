@@ -1,0 +1,21 @@
+{
+  "project": "petsitter",
+  "total": 9,
+  "passed": 9,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 4345.006103515625,
+  "measuredAt": "2026-10-14T15:37:38.514Z",
+  "environments": [],
+  "kind": "unit",
+  "format": "vitest",
+  "dateSource": "report",
+  "revision": "01dfceaf4af8ae885a79ad6c609bf53b1265716d",
+  "scope": "Suite de logique et composants sur la branche QA ; services externes simulés",
+  "reportUrl": "/qa/reports/petsitter-unit.json"
+}

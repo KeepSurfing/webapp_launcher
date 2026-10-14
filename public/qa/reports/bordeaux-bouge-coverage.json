@@ -1,0 +1,29 @@
+{
+  "project": "bordeaux-bouge",
+  "metrics": {
+    "lines": {
+      "total": 975,
+      "covered": 975,
+      "pct": 100
+    },
+    "branches": {
+      "total": 1709,
+      "covered": 1709,
+      "pct": 100
+    },
+    "functions": {
+      "total": 470,
+      "covered": 470,
+      "pct": 100
+    },
+    "statements": {
+      "total": 2062,
+      "covered": 2062,
+      "pct": 100
+    }
+  },
+  "measuredAt": "2026-10-14T15:33:27.791Z",
+  "scope": "Tous les fichiers src/**/*.ts et src/**/*.tsx ; quatre métriques à 100 %. Services externes simulés. Branche QA en revue.",
+  "revision": "e3e2714c45a085449ea497d4f94cef552ffa2341",
+  "reportUrl": "/qa/reports/bordeaux-bouge-coverage.json"
+}
