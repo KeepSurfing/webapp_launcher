@@ -1,61 +1,76 @@
-"use client";
-
 import { useState } from "react";
+import { ArrowUpRight, Check, Code2, Plus, ShieldCheck, Sparkles } from "lucide-react";
 import type { MosaicSite } from "../data/sites";
-import { formatDate, formatPercent, qaData, summarizeQA } from "../data/qa";
+import { formatDate, formatPercent, getQAAction, qaData, summarizeQA, type QAActionKind } from "../data/qa";
 
 type Props = { sites: MosaicSite[]; onOpen: (site: MosaicSite, el: HTMLElement) => void };
+
 export function QADashboard({ sites, onOpen }: Props) {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState<"all" | "add" | "complete">("all");
   const linked = sites.filter(site => qaData.projects[site.id]);
   const summary = summarizeQA(linked.map(site => qaData.projects[site.id]));
-  const visible = linked.filter(site => {
-    const qa = qaData.projects[site.id];
-    return filter === "all" || (filter === "tested" ? qa.suites.length > 0 : qa.suites.length === 0);
-  });
-  const fresh = (date: string) => new Date(qaData.collectedAt).getTime() - new Date(date).getTime() <= 30 * 86400000;
+  const groups = [
+    { kind: "add" as const, title: "Ajouter des tests", subtitle: "Aucune suite détectée", icon: Plus },
+    { kind: "complete" as const, title: "Compléter les tests", subtitle: "Périmètres à renforcer", icon: Sparkles },
+  ];
+  const projectsFor = (kind: QAActionKind) => linked.filter(site => getQAAction(qaData.projects[site.id], site.id).kind === kind);
+  const counts = { add: projectsFor("add").length, complete: projectsFor("complete").length };
+  const reviewed = linked.filter(site => ["add", "complete"].includes(getQAAction(qaData.projects[site.id], site.id).kind));
+  const other = linked.filter(site => !reviewed.includes(site));
+  const failed = summary.failed + summary.errors;
+
   return <section className="qa-dashboard" aria-labelledby="qa-heading">
-    <div className="section-heading">
-      <div><p>PORTFOLIO QA</p><h2 id="qa-heading">La qualité, en chiffres.</h2></div>
-      <span className="qa-snapshot">Relevé du {formatDate(qaData.collectedAt)}</span>
+    <div className="qa-heading">
+      <div><span className="qa-eyebrow"><i /> PORTFOLIO QA</span><h2 id="qa-heading">La qualité en clair<span>.</span></h2></div>
+      <span className="qa-date">{formatDate(qaData.collectedAt)}</span>
     </div>
-    <div className="qa-kpis">
-      <article className="qa-kpi qa-kpi-primary"><span>Projets avec tests</span><strong>{summary.withTests}<small> / {summary.projects}</small></strong>
-        <div className="qa-meter" role="meter" aria-label="Projets avec tests automatisés" aria-valuemin={0} aria-valuemax={summary.projects || 1} aria-valuenow={summary.withTests}>
-          <i style={{ width: (summary.projects ? summary.withTests / summary.projects * 100 : 0) + "%" }} />
-        </div><p>Suites automatisées recensées</p></article>
-      <article className="qa-kpi"><span>Fichiers de tests</span><strong>{summary.files.toLocaleString("fr-FR")}</strong><p>Unitaires, interface et parcours</p></article>
-      <article className="qa-kpi"><span>Réussite des tests exécutés</span><strong>{formatPercent(summary.successRate)}</strong>
-        <p>{summary.executed ? <>{summary.passed + summary.flaky} / {summary.executed} réussis · {summary.reportProjects} projet{summary.reportProjects > 1 ? "s" : ""}</> : "Rapports d’exécution à collecter"}</p>
-        {summary.errors > 0 && <p className="qa-warning">{summary.errors} erreur(s) ou interruption(s)</p>}</article>
-      <article className="qa-kpi"><span>Couverture des lignes</span><strong>{formatPercent(summary.coverage)}</strong>
-        <p>{summary.coverageProjects ? <>{summary.coverageProjects} projet{summary.coverageProjects > 1 ? "s" : ""} mesuré{summary.coverageProjects > 1 ? "s" : ""} · périmètre du rapport</> : "Aucun rapport de couverture disponible"}</p></article>
+    <div className="qa-metrics">
+      <article className="qa-metric qa-metric-lime">
+        <div className="qa-metric-top"><span>Tests validés</span><Check size={19} /></div>
+        <strong>{(summary.passed + summary.flaky).toLocaleString("fr-FR")}</strong>
+        <div className="qa-metric-bottom"><span className="qa-mini-pill">{formatPercent(summary.successRate)} de réussite</span><span>{summary.reportProjects} projets</span></div>
+        {failed > 0 && <span className="qa-alert">{failed} échecs / erreurs</span>}
+      </article>
+      <article className="qa-metric qa-metric-coverage">
+        <div className="qa-metric-top"><span>Couverture des lignes</span><ShieldCheck size={19} /></div>
+        <strong>{summary.coverage === null ? "—" : summary.coverage.toLocaleString("fr-FR")}<small>{summary.coverage === null ? "" : "%"}</small></strong>
+        <div className="qa-meter" role="meter" aria-label="Couverture des lignes mesurées" aria-valuemin={0} aria-valuemax={100} aria-valuenow={summary.coverage ?? 0} aria-valuetext={formatPercent(summary.coverage)}><i style={{ width: (summary.coverage ?? 0) + "%" }} /></div>
+        <div className="qa-metric-bottom"><span>{summary.coverageProjects} / {summary.projects} projets mesurés</span></div>
+      </article>
+      <article className="qa-metric">
+        <div className="qa-metric-top"><span>Projets automatisés</span><Sparkles size={19} /></div>
+        <strong>{summary.withTests}<small className="qa-fraction">/{summary.projects}</small></strong>
+        <div className="qa-segments" aria-hidden="true">{linked.map((site, index) => <i key={site.id} className={index < summary.withTests ? "filled" : ""} />)}</div>
+        <div className="qa-metric-bottom"><span>{summary.projects - summary.withTests} à équiper</span></div>
+      </article>
+      <article className="qa-metric">
+        <div className="qa-metric-top"><span>Fichiers de tests</span><Code2 size={19} /></div>
+        <strong>{summary.files}</strong>
+        <div className="qa-metric-bottom"><span>Unitaires · UI · E2E</span><span className="qa-tech-count">{summary.tools.length} outils</span></div>
+      </article>
     </div>
-    <div className="qa-panel">
-      <div className="qa-panel-heading"><div><h3>Les tests derrière les projets</h3><p>Sélectionnez une application pour explorer ses vérifications.</p></div>
-        <div className="qa-filters" aria-label="Filtrer le bilan QA">
-          {[["all", "Tous"], ["tested", "Avec tests"], ["missing", "À compléter"]].map(([value,label]) =>
-            <button key={value} className={filter === value ? "active" : ""} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label}</button>)}
-        </div>
+    <div className="qa-priorities-top"><h3>Prochaines étapes <span>{reviewed.length}</span></h3>
+      <div className="qa-filters" aria-label="Filtrer les priorités QA">
+        {([["all", "Tout", reviewed.length], ["add", "Ajouter", counts.add], ["complete", "Compléter", counts.complete]] as const).map(([value, label, count]) =>
+          <button key={value} className={filter === value ? "active" : ""} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label}<span>{count}</span></button>)}
       </div>
-      <div className="qa-table-scroll"><table className="qa-table"><thead><tr><th>Application</th><th>Automatisation</th><th>Derniers résultats</th><th>Lignes couvertes</th><th><span className="sr-only">Détails</span></th></tr></thead>
-        <tbody>{visible.map(site => {
-          const qa = qaData.projects[site.id], result = summarizeQA([qa]);
-          const lastRun = qa.runs.toSorted((a,b) => b.measuredAt.localeCompare(a.measuredAt))[0];
-          return <tr key={site.id}><th scope="row"><button className="qa-project-link" onClick={event => onOpen(site, event.currentTarget)}>
-            <span className="qa-project-mark" style={{ color: site.accent }}>{site.mark}</span><span>{site.name}<small>{site.category}</small></span></button></th>
-            <td><span className={"qa-status " + (qa.suites.length ? "qa-status-good" : "qa-status-muted")}>{qa.suites.length ? "Tests recensés" : qa.available ? "À compléter" : "Source indisponible"}</span>
-              <small>{qa.suites.length ? result.files + " fichiers · " + result.tools.join(" / ") : "Aucune suite détectée"}</small></td>
-            <td>{lastRun ? <><span className={result.failed || result.errors ? "qa-warning" : "qa-good"}>{result.passed + result.flaky} réussis{result.failed ? " · " + result.failed + " échecs" : ""}</span>
-              <small>{formatDate(lastRun.measuredAt)}{!fresh(lastRun.measuredAt) ? " · relevé ancien" : ""}{result.flaky ? " · " + result.flaky + " instables" : ""}</small></> : <span className="qa-muted">Non mesurés</span>}</td>
-            <td><span>{formatPercent(qa.coverage?.metrics.lines?.pct ?? null)}</span><small>{qa.coverage ? "Périmètre documenté" : "Non mesurée"}</small></td>
-            <td><button className="qa-detail-button" onClick={event => onOpen(site, event.currentTarget)} aria-label={"Voir les tests de " + site.name}>↗</button></td></tr>;
-        })}</tbody></table></div>
-      {!visible.length && <p className="qa-empty">Aucun projet dans cette sélection.</p>}
-      <div className="qa-panel-footer"><div className="qa-tools">{summary.tools.map(tool => <span key={tool}>{tool}</span>)}</div><span>Sources vérifiables dans chaque fiche</span></div>
     </div>
-    <details className="qa-method"><summary>Comment lire ces indicateurs</summary><p>Un projet avec tests possède des fichiers de tests automatisés identifiés dans ses sources. Leur nombre ne mesure pas la couverture fonctionnelle. Les résultats proviennent des derniers rapports importés pour chaque suite ; les suites sans rapport ne participent pas au taux de réussite. Les tests ignorés, annulés et les échecs attendus sont présentés séparément dans les fiches.</p>
-      <p>La couverture mesure le code inclus dans les rapports. Le chiffre global additionne les lignes couvertes et les lignes mesurées, uniquement sur les projets disposant d’un rapport ; il ne représente pas tout le portfolio. Les dates des résultats peuvent différer du relevé des sources. Un résultat ancien décrit l’exécution passée.</p>
-    </details>
+    <div className={"qa-action-panels " + (filter !== "all" ? "qa-action-single" : "")}>
+      {groups.filter(group => filter === "all" || filter === group.kind).map(group => <section className={"qa-action-panel qa-action-" + group.kind} key={group.kind} aria-label={group.title}>
+        <div className="qa-action-heading"><span className="qa-action-symbol"><group.icon size={20} /></span><div><h4>{group.title}</h4><p>{group.subtitle}</p></div><strong>{counts[group.kind].toString().padStart(2, "0")}</strong></div>
+        <div className="qa-project-list">{projectsFor(group.kind).map(site => {
+          const qa = qaData.projects[site.id], action = getQAAction(qa, site.id), result = summarizeQA([qa]);
+          return <button className="qa-project" key={site.id} onClick={event => onOpen(site, event.currentTarget)} aria-label={"Voir les tests de " + site.name}>
+            <span className="qa-project-avatar" style={{ color: site.accent }}>{site.mark}</span>
+            <span className="qa-project-copy"><strong>{site.name}</strong><small>{action.headline}</small></span>
+            <span className="qa-project-value">{group.kind === "add" ? <span className="qa-zero">À créer</span> : <><b>{qa.coverage ? formatPercent(qa.coverage.metrics.lines?.pct ?? null) : result.executed ? result.executed : "—"}</b><small>{qa.coverage ? "couverture" : result.executed ? "tests exécutés" : "rapport absent"}</small></>}</span>
+            <ArrowUpRight className="qa-project-arrow" size={17} />
+          </button>;
+        })}</div>
+        {counts[group.kind] === 0 && <p className="qa-empty">Aucun projet dans cette catégorie.</p>}
+      </section>)}
+    </div>
+    {other.length > 0 && <div className="qa-other">{other.map(site => <button key={site.id} onClick={event => onOpen(site, event.currentTarget)}>{site.name} · {getQAAction(qaData.projects[site.id], site.id).label}<ArrowUpRight size={14} /></button>)}</div>}
+    <details className="qa-method"><summary>Sources & méthode</summary><p>{summary.executed} tests exécutés sur {summary.reportProjects} projets. Couverture pondérée sur {summary.coverageProjects} projets uniquement. Les rapports absents restent non mesurés.</p><p>Les priorités correspondent aux sources inspectées : absence de suite, code non couvert par les tests unitaires, ou parcours sans tests identifiés. Les mesures et les exécutions manquantes sont distinguées des tests à écrire dans les fiches.</p></details>
   </section>;
 }

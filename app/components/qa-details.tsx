@@ -1,39 +1,44 @@
-import { formatDate, formatDuration, formatPercent, kindLabels, qaData, summarizeQA, type ProjectQA } from "../data/qa";
+import { ArrowUpRight, Plus, Sparkles } from "lucide-react";
+import { formatDate, formatDuration, formatPercent, getQAAction, kindLabels, qaData, summarizeQA } from "../data/qa";
 
-function Coverage({ qa }: { qa: ProjectQA }) {
-  if (!qa.coverage) return <div className="qa-missing"><strong>Couverture du code non mesurée</strong><p>Les tests recensés ne suffisent pas à calculer un pourcentage. Un rapport de couverture permettra de compléter cette fiche.</p></div>;
-  return <div className="qa-coverage"><h4>Couverture du code</h4>
-    {([["lines","Lignes"],["branches","Branches"],["functions","Fonctions"],["statements","Instructions"]] as const).map(([key,label]) => {
-      const metric = qa.coverage!.metrics[key];
-      return <div className="qa-coverage-row" key={key}><span>{label}</span><div className="qa-meter"><i style={{ width: (metric?.pct ?? 0) + "%" }} /></div><strong>{formatPercent(metric?.pct ?? null)}</strong></div>;
-    })}
-    <p>{qa.coverage.scope} · {formatDate(qa.coverage.measuredAt)}</p>
-    <a href={qa.coverage.reportUrl} target="_blank" rel="noreferrer">Consulter les mesures ↗</a>
-  </div>;
-}
 export function QADetails({ siteId }: { siteId: string }) {
   const qa = qaData.projects[siteId];
-  if (!qa) return <section className="qa-details"><h3>Tests & qualité</h3><p className="qa-muted">{siteId === "dashboard" || siteId === "vercel-project" ? "Projet exclu du bilan QA." : "Ce projet n’est pas encore relié à une source de tests."}</p></section>;
-  const summary = summarizeQA([qa]);
+  if (!qa) return <section className="qa-details"><h3>Tests & qualité</h3><p className="qa-muted">{siteId === "dashboard" || siteId === "vercel-project" ? "Hors bilan QA." : "Source à relier."}</p></section>;
+  const summary = summarizeQA([qa]), action = getQAAction(qa, siteId);
+  const kinds = [...new Set(qa.suites.map(suite => suite.kind))];
+  const failed = summary.failed + summary.errors;
   return <section className="qa-details" aria-labelledby={"qa-detail-" + siteId}>
-    <div className="qa-details-heading"><div><p>ASSURANCE QUALITÉ</p><h3 id={"qa-detail-" + siteId}>Les tests de ce projet.</h3></div>
-      <span className={"qa-status " + (qa.suites.length ? "qa-status-good" : "qa-status-muted")}>{qa.suites.length ? summary.files + " fichiers" : "À compléter"}</span></div>
-    {qa.suites.length ? <div className="qa-suite-tags">{qa.suites.map(suite => <span key={suite.kind + suite.tool}>{kindLabels[suite.kind]}<b>{suite.files.length}</b></span>)}</div> :
-      <p className="qa-muted">{qa.available ? "Aucune suite de tests automatisés détectée dans les sources inspectées." : "Les sources de ce projet n’ont pas pu être inspectées."}</p>}
-    {qa.focus.length > 0 && <div className="qa-focus"><h4>Périmètre des vérifications</h4><ul>{qa.focus.map(item => <li key={item}>{item}</li>)}</ul><p>Scénarios présents dans les suites ; leur validation dépend des rapports ci-dessous.</p></div>}
-    <Coverage qa={qa} />
-    <div className="qa-runs"><h4>Dernières exécutions importées</h4>{qa.runs.length ? qa.runs.map(run => <article key={run.kind} className="qa-run">
-      <div><strong>{kindLabels[run.kind]}</strong><span className={run.failed || run.errors || run.cancelled ? "qa-warning" : "qa-good"}>{run.failed || run.errors || run.cancelled ? "À examiner" : run.total > 0 && run.passed + run.flaky > 0 ? "Exécution réussie" : "Sans test réussi"}</span></div>
-      <div className="qa-run-counts"><span><b>{run.passed}</b> réussis</span><span><b>{run.failed}</b> échoués</span><span><b>{run.skipped + run.todo}</b> ignorés / à faire</span></div>
-      {run.flaky > 0 && <p className="qa-warning">{run.flaky} test(s) instable(s), réussis après relance</p>}
-      {run.expectedFailures > 0 && <p>{run.expectedFailures} échec(s) attendu(s)</p>}
-      {run.cancelled + run.errors > 0 && <p className="qa-warning">{run.cancelled} annulé(s) · {run.errors} erreur(s) d’exécution</p>}
-      <p>{formatDate(run.measuredAt)} · {formatDuration(run.durationMs)}{run.dateSource === "file" ? " · date du fichier de rapport" : ""}</p>
-      <p>{run.scope}{run.environments.length ? " · " + run.environments.join(", ") : ""}</p>
-      {run.revision && <p>Version testée : <code>{run.revision.slice(0,7)}</code>{qa.revision && qa.revision !== run.revision ? " · différente des sources inspectées" : ""}</p>}
-      <a href={run.reportUrl} target="_blank" rel="noreferrer">Consulter le résumé d’exécution ↗</a>
-    </article>) : <p className="qa-muted">Aucun rapport d’exécution importé. La présence de tests ne garantit pas qu’ils réussissent.</p>}</div>
-    {qa.suites.length > 0 && <details className="qa-file-list"><summary>Explorer les suites et leurs outils</summary>{qa.suites.map(suite => <div key={suite.kind + suite.tool}><h4>{kindLabels[suite.kind]} · {suite.tool}</h4><ul>{suite.files.map(file => <li key={file}><a href={qa.sourceUrl + "/blob/" + (qa.revision ?? "HEAD") + "/" + file.split("/").map(encodeURIComponent).join("/")} target="_blank" rel="noreferrer">{file}</a></li>)}</ul></div>)}</details>}
-    <div className="qa-provenance"><a href={qa.sourceUrl} target="_blank" rel="noreferrer">Voir le dépôt source ↗</a><span>Sources inspectées le {formatDate(qa.inspectedAt)}{qa.revision ? " · " + qa.revision.slice(0,7) : ""}{qa.workingTreeChanged ? " · modifications locales" : ""}</span></div>
+    <div className="qa-details-heading"><h3 id={"qa-detail-" + siteId}>Tests & qualité</h3><span className={"qa-status qa-status-" + action.kind}>{action.label}</span></div>
+    <div className="qa-detail-metrics">
+      <div><strong className={failed ? "qa-alert" : ""}>{summary.executed ? summary.passed + summary.flaky : "—"}</strong><span>tests validés</span></div>
+      <div><strong>{formatPercent(qa.coverage?.metrics.lines?.pct ?? null)}</strong><span>lignes couvertes</span></div>
+      <div><strong>{summary.files}</strong><span>fichiers de tests</span></div>
+    </div>
+    {failed > 0 && <p className="qa-alert">{failed} échecs ou erreurs</p>}
+    {kinds.length > 0 && <div className="qa-suite-tags">{kinds.map(kind => <span key={kind}>{kindLabels[kind]}</span>)}</div>}
+    <div className={"qa-next-step qa-next-" + action.kind}>
+      <div>{action.kind === "add" ? <Plus size={16} /> : <Sparkles size={16} />}<strong>{action.headline}</strong></div>
+      <ul>{action.steps.map(step => <li key={step.label}><span className={"qa-step-type qa-step-" + step.type}>{step.type === "test" ? "Tester" : step.type === "measure" ? "Mesurer" : "Exécuter"}</span><span>{step.label}</span></li>)}</ul>
+    </div>
+    {qa.coverage && <details className="qa-disclosure"><summary>Couverture détaillée <span>{formatPercent(qa.coverage.metrics.lines?.pct ?? null)}</span></summary>
+      <div className="qa-coverage">
+        {([["lines", "Lignes"], ["branches", "Branches"], ["functions", "Fonctions"], ["statements", "Instructions"]] as const).map(([key,label]) => {
+          const metric = qa.coverage!.metrics[key];
+          return <div className="qa-coverage-row" key={key}><span>{label}</span><div className="qa-meter"><i style={{ width: (metric?.pct ?? 0) + "%" }} /></div><strong>{formatPercent(metric?.pct ?? null)}</strong></div>;
+        })}
+        <p>{qa.coverage.scope}</p><a href={qa.coverage.reportUrl} target="_blank" rel="noreferrer">Mesures · {formatDate(qa.coverage.measuredAt)} <ArrowUpRight size={13} /></a>
+      </div>
+    </details>}
+    <details className="qa-disclosure"><summary>Rapports & sources <span>{qa.runs.length} rapports</span></summary>
+      {!qa.runs.length && <p className="qa-muted">Aucun rapport importé.</p>}
+      {qa.runs.map(run => <div className="qa-report" key={run.kind}>
+        <a href={run.reportUrl} target="_blank" rel="noreferrer"><span>{kindLabels[run.kind]}</span><strong>{run.passed + run.flaky}/{run.total}</strong><ArrowUpRight size={14} /></a>
+        <p>{formatDate(run.measuredAt)} · {formatDuration(run.durationMs)}{run.dateSource === "file" ? " · date du fichier" : ""}</p><p>{run.scope}</p>
+        {(run.failed + run.skipped + run.todo + run.flaky + run.cancelled + run.errors + run.expectedFailures > 0) && <p>{run.failed} échoués · {run.skipped + run.todo} ignorés · {run.flaky} instables · {run.cancelled} annulés · {run.errors} erreurs · {run.expectedFailures} échecs attendus</p>}
+        {run.revision && <p>Version {run.revision.slice(0,7)}{qa.revision && qa.revision !== run.revision ? " · différente des sources" : ""}</p>}
+      </div>)}
+      <div className="qa-source"><a href={qa.sourceUrl} target="_blank" rel="noreferrer">Dépôt GitHub <ArrowUpRight size={13} /></a><span>{formatDate(qa.inspectedAt)} · {qa.revision?.slice(0,7)}{qa.workingTreeChanged ? " · modifications locales" : ""}</span></div>
+      {qa.suites.length > 0 && <details className="qa-file-list"><summary>Fichiers de tests · {summary.files}</summary>{qa.suites.map(suite => <div key={suite.kind + suite.tool}><h4>{kindLabels[suite.kind]} · {suite.tool}</h4><ul>{suite.files.map(file => <li key={file}><a href={qa.sourceUrl + "/blob/" + (qa.revision ?? "HEAD") + "/" + file.split("/").map(encodeURIComponent).join("/")} target="_blank" rel="noreferrer">{file}</a></li>)}</ul></div>)}</details>}
+    </details>
   </section>;
 }

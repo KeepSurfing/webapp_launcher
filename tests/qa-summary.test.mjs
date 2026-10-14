@@ -35,3 +35,24 @@ test("pass rate excludes skipped and expected failures, while retaining flaky an
   assert.equal(summary.flaky, 1);
   assert.equal(summary.errors, 2);
 });
+
+test("missing reports alone request measurement, not new tests", () => {
+  const qa = { available: true, revision: "cd331e11fe77f58d81ce21ad046e7ba55c8bd987", suites: [{ kind: "unit", tool: "Vitest", files: ["logic.test.ts"] }], coverage: null, runs: [] };
+  assert.equal(context.exports.getQAAction(qa, "unknown-project").kind, "measure");
+});
+test("inspected projects with no test suites need tests; unavailable sources need inspection", () => {
+  assert.equal(context.exports.getQAAction({ available: true, suites: [] }, "petsitter").kind, "add");
+  assert.equal(context.exports.getQAAction({ available: false, suites: [] }, "petsitter").kind, "review");
+});
+test("known source gaps and partial line coverage request additional tests", () => {
+  const qa = { available: true, revision: "cd331e11fe77f58d81ce21ad046e7ba55c8bd987", suites: [{ kind: "unit", files: ["logic.test.ts"] }], coverage: null, runs: [] };
+  assert.equal(context.exports.getQAAction(qa, "rgpd-scan").kind, "complete");
+  assert.ok(context.exports.getQAAction(qa, "rgpd-scan").steps.some(step => step.type === "measure"));
+  const covered = { ...qa, coverage: { metrics: { lines: { total: 10, covered: 9, pct: 90 } } } };
+  assert.equal(context.exports.getQAAction(covered, "unknown-project").kind, "complete");
+});
+
+test("source-specific recommendations do not persist as verified gaps after a revision change", () => {
+  const qa = { available: true, revision: "a-new-source-revision", suites: [{ kind: "unit", files: ["unit.test.ts"] }], coverage: null, runs: [] };
+  assert.equal(context.exports.getQAAction(qa, "rgpd-scan").kind, "measure");
+});

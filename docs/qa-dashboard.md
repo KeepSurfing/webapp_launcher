@@ -77,3 +77,21 @@ npm run build
 Les tests QA vérifient les calculs et les cas qui pourraient présenter des chiffres trompeurs : rapports incomplets, couverture absente, tests instables et échecs attendus.
 
 Références : [Reporters Playwright](https://playwright.dev/docs/test-reporters), [Reporters Vitest](https://vitest.dev/guide/reporters), [Couverture Vitest](https://vitest.dev/guide/coverage).
+
+## Priorités identifiées — 14 octobre 2026
+
+| Projet | Action | Périmètre à traiter |
+|---|---|---|
+| PetSitter | Ajouter | Validation du contact, navigation mobile et clavier |
+| Toit Rénov’ | Ajouter | Préremplissage et validation du devis, liens de contact |
+| Bordeaux Bouge | Ajouter | Filtres, dates, export ICS, recherche et newsletter |
+| CartoRisques | Compléter | Cas limites de l’analyse statique et des tuiles ; composants d’analyse et recherche |
+| Conseiller d’orientation | Compléter | FavorisClient, API analytics et repository Prisma |
+| RGPD Scan | Compléter | Checkout, webhook, export PDF et envoi du rapport |
+| KeepSurfing | Compléter | API GitHub, délais et erreurs réseau |
+
+Les trois premiers projets n’ont aucune suite identifiée dans les sources inspectées. Les priorités de CartoRisques et du Conseiller d’orientation proviennent notamment des rapports de couverture **unitaires** : les zones citées peuvent déjà être traversées par des E2E. Pour RGPD Scan et KeepSurfing, les suites inspectées ne testent pas les routes API citées.
+
+Les fiches distinguent les tests à écrire des actions de mesure et d’exécution. RGPD Scan nécessite un rapport de couverture et l’exécution de sa suite navigateur ; KeepSurfing, le relevé de sa suite visuelle ; CartoRisques, les résultats Python API/ETL ; le Conseiller d’orientation, ses résultats E2E. L’absence de ces rapports n’est pas une preuve d’absence de tests.
+
+Les recommandations précises correspondent à la version inspectée. Quand la collecte détecte un nouveau commit, les anciennes recommandations ne sont plus présentées comme des lacunes vérifiées ; le classement utilise les nouvelles métriques disponibles, ou demande une mesure.
