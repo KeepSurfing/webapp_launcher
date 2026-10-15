@@ -84,11 +84,11 @@ Le libellé « Couverture du code » désigne la proportion pondérée des ligne
 
 | Projet | Tests validés | Couverture du code mesuré | Publication |
 |---|---:|---|---|
-| Accord | 139 | 100 % : six modules, configuration, serveur et génération | PR 1 |
+| Accord | 139 | 100 % : six modules, configuration, serveur et génération | Fusionné · PR 1 |
 | PetSitter | 11 | 100 % : logique et composants | PR 1 |
 | Toit Rénov’ | 24 | 100 % : JavaScript applicatif | PR 1 |
 | Bordeaux Bouge | 75 | 100 % : métier, API et UI | PR 1 |
-| KeepSurfing | 53 | 99,7 % : toutes les routes API | PR 2 |
+| KeepSurfing | 53 | 99,7 % : toutes les routes API | Fusionné · PR 2 |
 | RGPD Scan | 93 | 96,2 % : toutes les routes API et lib/server | main |
 | Orientation | 293 | 92,9 % : src, hors adaptateur et Prisma généré | PR 1 |
 | CartoRisques | 200 | 98,3 % : frontend, Python exclu | PR 1 |
@@ -99,7 +99,7 @@ La couverture de RGPD Scan fusionne les résultats unitaires Vitest et navigateu
 
 Le portfolio exécute six scénarios sur deux tailles d’écran (douze exécutions), dont huit comparaisons aux références PNG Chromium Linux versionnées. Heure fixe et services externes bloqués assurent leur reproductibilité. Les quatre anciennes exécutions fonctionnelles sont remplacées par cette suite complète, sans double comptage. Les 28 E2E Chromium d’Orientation passent en CI. Leur résumé de comptage est importé depuis le job GitHub lié ; le rapport détaillé n’est pas archivé.
 
-Les versions en revue sont liées dans chaque volet. Ces zones identifiées sont maintenant exercées. Les fiches signalent les périmètres dont la couverture reste partielle, distinctement de la présence de suites de tests. Un changement de commit invalide ces recommandations précises. Les tests, la compilation et les contrôles CI passent sur les quatre versions complétées.
+Les PR fusionnées sont liées dans chaque volet avec le libellé « Tests intégrés ». Ces zones identifiées sont maintenant exercées. Les fiches signalent les périmètres dont la couverture reste partielle, distinctement de la présence de suites de tests. Un changement de commit invalide ces recommandations précises. Les tests, la compilation et les contrôles CI passent sur les quatre versions complétées.
 
 ## Complétion des zones identifiées
 
@@ -113,6 +113,12 @@ Les pourcentages partiels restent visibles : ils ne sont pas arrondis artificiel
 
 Accord rejoint le dashboard et ses volets avec son adresse publique confirmée et son aperçu. La suite couvre 89 tests Vitest et 50 E2E Chromium desktop/mobile, soit 139 validations. La couverture porte sur les six modules dist/*.js, site-config.mjs, serve.mjs et generate-public.mjs : 512/512 lignes et 264/264 fonctions ; instructions 99,77 %, branches 96,92 %. Les tests incluent les six ateliers, le vrai Web Audio avec flux microphone synthétique, les erreurs et arrêts du micro, les préférences, 21 pages et le responsive FR/EN. Ils ne remplacent pas un essai instrumental réel. La CI impose 100 % des lignes par fichier et conserve séparément les rapports unitaires et E2E.
 
-Total du portfolio : 888 tests validés, 97,4 % de couverture pondérée sur huit projets mesurés ; Vitest 649, Playwright 118, pytest 121. Accord est publié dans [la PR 1](https://github.com/KeepSurfing/accord/pull/1). La mesure utilise une copie propre de la branche publiée ; les modifications marketing locales sont préservées.
+Total du portfolio : 888 tests validés, 97,4 % de couverture pondérée sur huit projets mesurés ; Vitest 649, Playwright 118, pytest 121. Accord est intégré à main via [la PR 1](https://github.com/KeepSurfing/accord/pull/1). La mesure utilise une copie propre de la branche publiée ; les modifications marketing locales sont préservées.
 
 Les résultats locaux d’Accord sont confirmés par [le job GitHub QA du même commit](https://github.com/KeepSurfing/accord/actions/runs/38664514239/job/116193223242) : 89 + 50 tests, aucun échec, test ignoré ou instable, et les mêmes dénominateurs de couverture. Les liens d’exécution permettent cette vérification ; les dates des rapports importés restent celles des mesures locales.
+
+## Intégration aux branches par défaut — 15 octobre 2026
+
+Les sept PR QA sont fusionnées : PetSitter, Toit Rénov’, Bordeaux Bouge, Orientation et Accord sur main ; KeepSurfing sur claude/portfolio-website-design-dw1uvu ; CartoRisques sur claude/risques-france-webapp-yd3gy5. Ces branches sont les branches par défaut vérifiées des dépôts. RGPD Scan et le launcher étaient déjà publiés sur main.
+
+Le contenu Git de chaque commit de fusion correspond exactement au contenu de la version testée. Les rapports conservent les SHA et les dates des exécutions réelles ; aucune nouvelle mesure n’est déduite d’une simple fusion. Les liens des PR restent disponibles et leur statut dans le launcher indique maintenant « Tests intégrés ».

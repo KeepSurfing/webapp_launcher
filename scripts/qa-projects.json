@@ -8,7 +8,8 @@
         "Contact : validation et simulation d’envoi",
         "Navigation mobile, FAQ et pages légales"
       ],
-      "changeUrl": "https://github.com/KeepSurfing/petsitter/pull/1"
+      "changeUrl": "https://github.com/KeepSurfing/petsitter/pull/1",
+      "changeStatus": "merged"
     },
     {
       "id": "toit-renov",
@@ -18,7 +19,8 @@
         "Devis, thèmes et navigation mobile",
         "Galerie, lightbox et comparaison avant/après"
       ],
-      "changeUrl": "https://github.com/KeepSurfing/toit-renov/pull/1"
+      "changeUrl": "https://github.com/KeepSurfing/toit-renov/pull/1",
+      "changeStatus": "merged"
     },
     {
       "id": "bordeaux-bouge",
@@ -29,7 +31,8 @@
         "Pages, routes API, newsletter et erreurs des services",
         "Filtres, favoris, carte et inscription"
       ],
-      "changeUrl": "https://github.com/KeepSurfing/bdx-agenda/pull/1"
+      "changeUrl": "https://github.com/KeepSurfing/bdx-agenda/pull/1",
+      "changeStatus": "merged"
     },
     {
       "id": "keepsurfing",
@@ -39,7 +42,8 @@
         "API GitHub : erreurs, données absentes et archives de repli",
         "Comparaisons visuelles Linux, thèmes, réservation et navigation"
       ],
-      "changeUrl": "https://github.com/KeepSurfing/Portfolio/pull/2"
+      "changeUrl": "https://github.com/KeepSurfing/Portfolio/pull/2",
+      "changeStatus": "merged"
     },
     {
       "id": "rgpd-scan",
@@ -61,7 +65,8 @@
         "Admin : données de suivi et authentification",
         "Quiz, favoris, analytics, PWA et synchronisation métier"
       ],
-      "changeUrl": "https://github.com/KeepSurfing/ConseillerOrientation/pull/1"
+      "changeUrl": "https://github.com/KeepSurfing/ConseillerOrientation/pull/1",
+      "changeStatus": "merged"
     },
     {
       "id": "carto-risques",
@@ -72,7 +77,8 @@
         "Données statiques gzip, cache et protocole de tuiles",
         "Sources, rapports officiels, accessibilité ; API/ETL PostGIS"
       ],
-      "changeUrl": "https://github.com/KeepSurfing/CartoRisques/pull/1"
+      "changeUrl": "https://github.com/KeepSurfing/CartoRisques/pull/1",
+      "changeStatus": "merged"
     },
     {
       "id": "accord",
@@ -83,7 +89,8 @@
         "Instruments, six ateliers et sauvegarde locale",
         "Microphone synthétique, erreurs, pages FR/EN et mobile"
       ],
-      "changeUrl": "https://github.com/KeepSurfing/accord/pull/1"
+      "changeUrl": "https://github.com/KeepSurfing/accord/pull/1",
+      "changeStatus": "merged"
     }
   ]
 }

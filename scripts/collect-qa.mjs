@@ -47,7 +47,7 @@ for (const project of config.projects) {
     throw new Error("Identifiant de projet invalide");
   const dir = args.includes("--github") ? await syncSource(project) : path.resolve(root, project.path);
   const qa = { repository: project.repository, sourceUrl: "https://github.com/" + project.repository,
-    changeUrl: project.changeUrl ?? null, inspectedAt: output.collectedAt, available: await exists(dir), revision: null, workingTreeChanged: null,
+    changeUrl: project.changeUrl ?? null, changeStatus: project.changeUrl ? project.changeStatus ?? "review" : null, inspectedAt: output.collectedAt, available: await exists(dir), revision: null, workingTreeChanged: null,
     suites: [], focus: project.focus ?? [], coverage: null, runs: [] };
   if (qa.available) {
     try { qa.revision = git(dir, ["rev-parse", "HEAD"]); qa.workingTreeChanged = Boolean(git(dir, ["status", "--porcelain", "--untracked-files=no"])); } catch { /* No Git metadata. */ }

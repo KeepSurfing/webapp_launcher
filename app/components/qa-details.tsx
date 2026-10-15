@@ -15,7 +15,7 @@ export function QADetails({ siteId }: { siteId: string }) {
       <div><strong>{summary.files}</strong><span>fichiers de tests</span></div>
     </div>
     {failed > 0 && <p className="qa-alert">{failed} échecs ou erreurs</p>}
-    {qa.changeUrl && <a className="qa-change-link" href={qa.changeUrl} target="_blank" rel="noreferrer">Tests ajoutés · en revue <ArrowUpRight size={12} /></a>}
+    {qa.changeUrl && <a className="qa-change-link" href={qa.changeUrl} target="_blank" rel="noreferrer">{qa.changeStatus === "merged" ? "Tests intégrés" : "Tests ajoutés · en revue"} <ArrowUpRight size={12} /></a>}
     {technologies.length > 0 && <div className="qa-suite-tags">{technologies.map(tool => <span key={tool.name}>{tool.name} · {tool.executed === null ? "—" : tool.executed}</span>)}</div>}
     <div className={"qa-next-step qa-next-" + action.kind}>
       <div>{action.kind === "add" ? <Plus size={16} /> : <Sparkles size={16} />}<strong>{action.headline}</strong></div>
