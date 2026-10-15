@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "collectedAt": "2026-10-14T19:13:19.156Z",
+  "collectedAt": "2026-10-15T01:18:06.597Z",
   "projects": {
     "petsitter": {
       "repository": "KeepSurfing/petsitter",
       "sourceUrl": "https://github.com/KeepSurfing/petsitter",
       "changeUrl": "https://github.com/KeepSurfing/petsitter/pull/1",
-      "inspectedAt": "2026-10-14T19:13:19.156Z",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
       "available": true,
       "revision": "01dfceaf4af8ae885a79ad6c609bf53b1265716d",
       "workingTreeChanged": false,
@@ -107,7 +107,7 @@
       "repository": "KeepSurfing/toit-renov",
       "sourceUrl": "https://github.com/KeepSurfing/toit-renov",
       "changeUrl": "https://github.com/KeepSurfing/toit-renov/pull/1",
-      "inspectedAt": "2026-10-14T19:13:19.156Z",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
       "available": true,
       "revision": "b6a81bf57f8ea4d7f3ac62e1a2b36e689ef2f078",
       "workingTreeChanged": false,
@@ -208,7 +208,7 @@
       "repository": "KeepSurfing/bdx-agenda",
       "sourceUrl": "https://github.com/KeepSurfing/bdx-agenda",
       "changeUrl": "https://github.com/KeepSurfing/bdx-agenda/pull/1",
-      "inspectedAt": "2026-10-14T19:13:19.156Z",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
       "available": true,
       "revision": "e3e2714c45a085449ea497d4f94cef552ffa2341",
       "workingTreeChanged": false,
@@ -324,7 +324,7 @@
       "repository": "KeepSurfing/Portfolio",
       "sourceUrl": "https://github.com/KeepSurfing/Portfolio",
       "changeUrl": "https://github.com/KeepSurfing/Portfolio/pull/2",
-      "inspectedAt": "2026-10-14T19:13:19.156Z",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
       "available": true,
       "revision": "1a1ece418b2c3f30364e7eb99b5c756b1e8e5007",
       "workingTreeChanged": false,
@@ -428,7 +428,7 @@
       "repository": "KeepSurfing/RGPD_scan",
       "sourceUrl": "https://github.com/KeepSurfing/RGPD_scan",
       "changeUrl": null,
-      "inspectedAt": "2026-10-14T19:13:19.156Z",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
       "available": true,
       "revision": "4fd463321efe68d97b6c71c83cbc0c6812953db2",
       "workingTreeChanged": false,
@@ -543,7 +543,7 @@
       "repository": "KeepSurfing/ConseillerOrientation",
       "sourceUrl": "https://github.com/KeepSurfing/ConseillerOrientation",
       "changeUrl": "https://github.com/KeepSurfing/ConseillerOrientation/pull/1",
-      "inspectedAt": "2026-10-14T19:13:19.156Z",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
       "available": true,
       "revision": "9d8aff170ce0829230a9647adb142ae2ee4e6b29",
       "workingTreeChanged": false,
@@ -701,7 +701,7 @@
       "repository": "KeepSurfing/CartoRisques",
       "sourceUrl": "https://github.com/KeepSurfing/CartoRisques",
       "changeUrl": "https://github.com/KeepSurfing/CartoRisques/pull/1",
-      "inspectedAt": "2026-10-14T19:13:19.156Z",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
       "available": true,
       "revision": "7463b1953cc9f141be62968c9857d2087154794a",
       "workingTreeChanged": false,
@@ -856,6 +856,122 @@
           "revision": "7463b1953cc9f141be62968c9857d2087154794a",
           "scope": "121 tests backend/ETL exécutés en CI avec deux bases PostGIS isolées ; aucun ignoré",
           "reportUrl": "/qa/reports/carto-risques-integration.json"
+        }
+      ]
+    },
+    "accord": {
+      "repository": "KeepSurfing/accord",
+      "sourceUrl": "https://github.com/KeepSurfing/accord",
+      "changeUrl": "https://github.com/KeepSurfing/accord/pull/1",
+      "inspectedAt": "2026-10-15T01:18:06.597Z",
+      "available": true,
+      "revision": "b28e0691338739eac2d7877250ba5228b59986e0",
+      "workingTreeChanged": false,
+      "suites": [
+        {
+          "kind": "unit",
+          "tool": "Vitest",
+          "files": [
+            "tests/audio.test.mjs",
+            "tests/config.test.mjs",
+            "tests/interface.test.mjs",
+            "tests/music.test.mjs",
+            "tests/pages.test.mjs",
+            "tests/server.test.mjs",
+            "tests/studio.test.mjs",
+            "tests/transport.test.mjs",
+            "tests/workshops.test.mjs"
+          ]
+        },
+        {
+          "kind": "e2e",
+          "tool": "Playwright",
+          "files": [
+            "tests/e2e/explorer.spec.mjs",
+            "tests/e2e/microphone.spec.mjs",
+            "tests/e2e/public.spec.mjs",
+            "tests/e2e/workshops.spec.mjs"
+          ]
+        }
+      ],
+      "focus": [
+        "Moteur musical, synthèse audio et séquenceur",
+        "Instruments, six ateliers et sauvegarde locale",
+        "Microphone synthétique, erreurs, pages FR/EN et mobile"
+      ],
+      "coverage": {
+        "metrics": {
+          "lines": {
+            "total": 512,
+            "covered": 512,
+            "pct": 100
+          },
+          "branches": {
+            "total": 1104,
+            "covered": 1070,
+            "pct": 96.9
+          },
+          "functions": {
+            "total": 264,
+            "covered": 264,
+            "pct": 100
+          },
+          "statements": {
+            "total": 1353,
+            "covered": 1350,
+            "pct": 99.8
+          }
+        },
+        "measuredAt": "2026-10-15T01:12:30.367Z",
+        "scope": "Tous les six modules dist/*.js + site-config.mjs, serve.mjs et generate-public.mjs ; aucun module applicatif exclu",
+        "revision": "b28e0691338739eac2d7877250ba5228b59986e0",
+        "reportUrl": "/qa/reports/accord-coverage.json"
+      },
+      "runs": [
+        {
+          "total": 89,
+          "passed": 89,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "cancelled": 0,
+          "todo": 0,
+          "expectedFailures": 0,
+          "errors": 0,
+          "durationMs": 10106.337646484375,
+          "measuredAt": "2026-10-15T01:12:19.988Z",
+          "environments": [],
+          "kind": "unit",
+          "format": "vitest",
+          "dateSource": "report",
+          "sourceUrl": "https://github.com/KeepSurfing/accord/actions/runs/38664514239/job/116193223242",
+          "revision": "b28e0691338739eac2d7877250ba5228b59986e0",
+          "scope": "89 tests : moteur, audio, transport, interface et ateliers ; serveur et génération des pages ; mesure locale confirmée sur le même commit en CI",
+          "reportUrl": "/qa/reports/accord-unit.json"
+        },
+        {
+          "total": 50,
+          "passed": 50,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 0,
+          "cancelled": 0,
+          "todo": 0,
+          "expectedFailures": 0,
+          "errors": 0,
+          "durationMs": 39304.738,
+          "measuredAt": "2026-10-15T01:12:32.003Z",
+          "environments": [
+            "chromium-desktop",
+            "chromium-mobile"
+          ],
+          "kind": "e2e",
+          "format": "playwright",
+          "dateSource": "report",
+          "sourceUrl": "https://github.com/KeepSurfing/accord/actions/runs/38664514239/job/116193223242",
+          "revision": "b28e0691338739eac2d7877250ba5228b59986e0",
+          "scope": "25 scénarios exécutés sur Chromium desktop et mobile : ateliers, vrai Web Audio et micro synthétique, erreurs, 21 pages FR/EN, responsive 320–1440 px ; mesure locale confirmée sur le même commit en CI",
+          "reportUrl": "/qa/reports/accord-e2e.json"
         }
       ]
     }

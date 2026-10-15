@@ -78,12 +78,13 @@ Les tests QA vérifient les calculs et les cas qui pourraient présenter des chi
 
 Références : [Reporters Playwright](https://playwright.dev/docs/test-reporters), [Reporters Vitest](https://vitest.dev/guide/reporters), [Couverture Vitest](https://vitest.dev/guide/coverage).
 
-## Mesures actualisées — 14 octobre 2026
+## Mesures actualisées — 15 octobre 2026
 
 Le libellé « Couverture du code » désigne la proportion pondérée des lignes couvertes dans les périmètres mesurés. La section « Technos » compte les tests réellement exécutés par Vitest, Playwright et pytest, hors tests ignorés. Un test Node.js pilotant Playwright est attribué à Playwright une seule fois ; Testing Library et les outils de couverture ne sont pas comptés comme des runners supplémentaires.
 
 | Projet | Tests validés | Couverture du code mesuré | Publication |
 |---|---:|---|---|
+| Accord | 139 | 100 % : six modules, configuration, serveur et génération | PR 1 |
 | PetSitter | 11 | 100 % : logique et composants | PR 1 |
 | Toit Rénov’ | 24 | 100 % : JavaScript applicatif | PR 1 |
 | Bordeaux Bouge | 75 | 100 % : métier, API et UI | PR 1 |
@@ -107,3 +108,11 @@ Les versions en revue sont liées dans chaque volet. Ces zones identifiées sont
 Les pages, fiches métiers, métadonnées, images de partage, robots/sitemap, administration et authentification d’Orientation sont testés. Un en-tête Basic invalide ne fait plus planter /admin. CartoRisques teste MapView, le protocole statique, cache/gzip, sources, géolocalisation, partage, focus clavier et rapport officiel ; MapView, les données/API et le protocole statique atteignent 100 % des lignes dans leurs fichiers. RGPD Scan couvre configurations, protections DNS, erreurs de navigation, frames, capture et budget de temps, interface du rapport et API client en streaming. La couverture RGPD conserve son périmètre serveur ; les tests de l’interface sont comptés séparément dans l’inventaire.
 
 Les pourcentages partiels restent visibles : ils ne sont pas arrondis artificiellement à 100 %. Le fallback défensif de countScore du portfolio est notamment sans entrée atteignable depuis des longueurs de tableaux positives. Les périmètres et versions sont documentés dans les rapports liés ; les quatre CI et leurs compilations passent.
+
+## Accord
+
+Accord rejoint le dashboard et ses volets avec son adresse publique confirmée et son aperçu. La suite couvre 89 tests Vitest et 50 E2E Chromium desktop/mobile, soit 139 validations. La couverture porte sur les six modules dist/*.js, site-config.mjs, serve.mjs et generate-public.mjs : 512/512 lignes et 264/264 fonctions ; instructions 99,77 %, branches 96,92 %. Les tests incluent les six ateliers, le vrai Web Audio avec flux microphone synthétique, les erreurs et arrêts du micro, les préférences, 21 pages et le responsive FR/EN. Ils ne remplacent pas un essai instrumental réel. La CI impose 100 % des lignes par fichier et conserve séparément les rapports unitaires et E2E.
+
+Total du portfolio : 888 tests validés, 97,4 % de couverture pondérée sur huit projets mesurés ; Vitest 649, Playwright 118, pytest 121. Accord est publié dans [la PR 1](https://github.com/KeepSurfing/accord/pull/1). La mesure utilise une copie propre de la branche publiée ; les modifications marketing locales sont préservées.
+
+Les résultats locaux d’Accord sont confirmés par [le job GitHub QA du même commit](https://github.com/KeepSurfing/accord/actions/runs/38664514239/job/116193223242) : 89 + 50 tests, aucun échec, test ignoré ou instable, et les mêmes dénominateurs de couverture. Les liens d’exécution permettent cette vérification ; les dates des rapports importés restent celles des mesures locales.

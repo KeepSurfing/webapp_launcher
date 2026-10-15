@@ -1,0 +1,29 @@
+{
+  "project": "accord",
+  "metrics": {
+    "lines": {
+      "total": 512,
+      "covered": 512,
+      "pct": 100
+    },
+    "branches": {
+      "total": 1104,
+      "covered": 1070,
+      "pct": 96.9
+    },
+    "functions": {
+      "total": 264,
+      "covered": 264,
+      "pct": 100
+    },
+    "statements": {
+      "total": 1353,
+      "covered": 1350,
+      "pct": 99.8
+    }
+  },
+  "measuredAt": "2026-10-15T01:12:30.367Z",
+  "scope": "Tous les six modules dist/*.js + site-config.mjs, serve.mjs et generate-public.mjs ; aucun module applicatif exclu",
+  "revision": "b28e0691338739eac2d7877250ba5228b59986e0",
+  "reportUrl": "/qa/reports/accord-coverage.json"
+}

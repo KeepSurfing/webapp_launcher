@@ -1,0 +1,25 @@
+{
+  "project": "accord",
+  "total": 50,
+  "passed": 50,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "cancelled": 0,
+  "todo": 0,
+  "expectedFailures": 0,
+  "errors": 0,
+  "durationMs": 39304.738,
+  "measuredAt": "2026-10-15T01:12:32.003Z",
+  "environments": [
+    "chromium-desktop",
+    "chromium-mobile"
+  ],
+  "kind": "e2e",
+  "format": "playwright",
+  "dateSource": "report",
+  "sourceUrl": "https://github.com/KeepSurfing/accord/actions/runs/38664514239/job/116193223242",
+  "revision": "b28e0691338739eac2d7877250ba5228b59986e0",
+  "scope": "25 scénarios exécutés sur Chromium desktop et mobile : ateliers, vrai Web Audio et micro synthétique, erreurs, 21 pages FR/EN, responsive 320–1440 px ; mesure locale confirmée sur le même commit en CI",
+  "reportUrl": "/qa/reports/accord-e2e.json"
+}
